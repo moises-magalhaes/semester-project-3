@@ -31,17 +31,7 @@ function NavigationBar() {
                         <Button variant="outline-info">Search</Button>
                     </Form>
                 </Navbar>
-                
-                {/* <ul>
-                <li>
-                    <NavLink exact to="/">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/products">Products</NavLink>
-                </li>
-                </ul> */}
-
-                {/* <hr /> */}
+           
 
                 {/*
                 A <Switch> looks through all its children <Route>
