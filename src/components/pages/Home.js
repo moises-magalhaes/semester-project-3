@@ -4,7 +4,7 @@ import Hero from '../common/Hero'
 function Home() {
     return (
         <>
-            <Hero />
+             <Hero /> 
         </>
     )
 }
