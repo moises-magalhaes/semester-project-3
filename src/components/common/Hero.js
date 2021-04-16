@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 // import Button from "react-bootstrap/Button";
-
+import { baseUrl } from "../settings/Api"
 
 function Hero() {
 
@@ -15,27 +15,33 @@ const [ heroData, setData ] = useState([]);
             }, []);
 
     const loadData = async () => {
-       await fetch("http://localhost:1337/home")
+       await fetch(baseUrl)
         .then(response => response.json())
-        .then(json => setData(json.hero_banner.url))
+        .then(json => setData(json.hero_banner))
 
+
+        // .then(json => setData(json.hero_banner.url))
+
+     
     }
+
     console.log(heroData);
 
 
     return (
         <div>
-            
+             <img src="{heroData}" alt="object" width="500" height="600" />
+                   
             <Jumbotron>
                 <div>{/*-------example 1------------*/}
                 <img src="{heroData}" alt="object" width="500" height="600" />
                    
                    {/*--------example 2----------*/}
                    
-                   {heroData.map()item =>
+                   {/* {heroData.map()item =>
                        <h1 key={heroData.item}>
                         {heroData.item}
-                        </h1>}
+                        </h1>} */}
                 </div>
 
                 {/* <h1>Hello, world!</h1>
