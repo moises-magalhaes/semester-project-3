@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 // import Button from "react-bootstrap/Button";
+<<<<<<< Updated upstream
 import { baseUrl } from "../settings/Api"
+=======
+import {baseUrl } from "../settings/Api";
+>>>>>>> Stashed changes
 
 function Hero() {
 
 const [ heroData, setData ] = useState([]);
-
-
-
 
     useEffect (() => {
         loadData();
             }, []);
 
     const loadData = async () => {
+<<<<<<< Updated upstream
        await fetch(baseUrl)
+=======
+       await fetch(baseUrl +"/home/")
+>>>>>>> Stashed changes
         .then(response => response.json())
         .then(json => setData(json.hero_banner))
 
@@ -24,9 +29,16 @@ const [ heroData, setData ] = useState([]);
 
      
     }
+<<<<<<< Updated upstream
 
     console.log(heroData);
+=======
+>>>>>>> Stashed changes
 
+    const newUrl = baseUrl + heroData;
+
+    console.log(heroData);
+    console.log(newUrl)
 
     return (
         <div>
@@ -34,7 +46,7 @@ const [ heroData, setData ] = useState([]);
                    
             <Jumbotron>
                 <div>{/*-------example 1------------*/}
-                <img src="{heroData}" alt="object" width="500" height="600" />
+                <img src={newUrl} alt="object" />
                    
                    {/*--------example 2----------*/}
                    
