@@ -32,10 +32,10 @@ const [ heroData, setData ] = useState([]);
                    
                    {/*--------example 2----------*/}
                    
-                   {heroData.map()item =>
+                   {/* {heroData.map()item =>
                        <h1 key={heroData.item}>
                         {heroData.item}
-                        </h1>}
+                        </h1>} */}
                 </div>
 
                 {/* <h1>Hello, world!</h1>
