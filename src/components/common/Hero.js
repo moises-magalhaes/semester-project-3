@@ -17,35 +17,25 @@ const [ heroData, setData ] = useState([]);
     const loadData = async () => {
        await fetch("http://localhost:1337/home")
         .then(response => response.json())
-        .then(json => setData(json.hero_banner))
+        .then(json => setData(json.hero_banner.url))
 
     }
     console.log(heroData);
-    console.log(Object.entries(heroData));
-    console.log(Object.values(heroData));
 
 
     return (
         <div>
             
             <Jumbotron>
-                <div>
-                 { heroData.map((item)=> {
-                      return <div>{item.id}</div>
-                       
-                 } )
-                  
-                } 
-
-
-                {/* {Object.keys(heroData).map(image => (
-                    <div key={image.id}>{image.url}</div>
-                ))} 
-                  */}
-                {/* {heroData.hero_banner.map (photo =>
-                    <div key={photo.id}>{photo.url}</div>
-                )} */}
-
+                <div>{/*-------example 1------------*/}
+                <img src="{heroData}" alt="object" width="500" height="600" />
+                   
+                   {/*--------example 2----------*/}
+                   
+                   {heroData.map()item =>
+                       <h1 key={heroData.item}>
+                        {heroData.item}
+                        </h1>}
                 </div>
 
                 {/* <h1>Hello, world!</h1>
