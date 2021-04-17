@@ -17,21 +17,38 @@ const [ productsData, setData ] = useState([]);
      
     }
 
-    console.log(productsData);
-
-
-
-    return (
-        <div className="featuredProduct">                
-            {productsData.map( product => (
-               <HomeProducts title={product.title}
+            return <div className="featuredProduct">                
+            {productsData.map( product => {
+                if(product.featured === true)
+                
+                {                      
+                <HomeProducts title={product.title}
                 description={product.description} 
                 image={product.image} 
                 price={product.price} 
-                key={product.id} />
-            ))}        
-        </div>
-    )
+                featured={product.featured}
+                key={product.id} />}       
+                 )}}
+                </div>
+
+
+    
+    // return (
+    //     <div className="featuredProducts">
+    //         {
+           
+    //         }
+    //     </div>
+        // <div className="featuredProduct">                
+        //     {productsData.map( product => (
+        //        <HomeProducts title={product.title}
+        //         description={product.description} 
+        //         image={product.image} 
+        //         price={product.price} 
+        //         key={product.id} />
+        //     ))}        
+        // </div>
+    // )
 }
 
 export default FeaturedProducts
