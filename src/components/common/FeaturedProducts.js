@@ -13,32 +13,34 @@ const [ productsData, setData ] = useState([]);
     const loadData = async () => {
        await fetch(baseUrl +"/products/")
         .then(response => response.json())
-        .then(json => setData(json))
+        .then((json) => setData(json))
      
     }
 
-            return <div className="featuredProduct">                
-            {productsData.map( product => {
-                if(product.featured === true)
+    console.log(productsData[1].featured)
+
+            // return <div className="featuredProduct">                
+            // {productsData.map( product => {
+            //     if(product.featured === true)
                 
-                {                      
-                <HomeProducts title={product.title}
-                description={product.description} 
-                image={product.image} 
-                price={product.price} 
-                featured={product.featured}
-                key={product.id} />}       
-                 )}}
-                </div>
+            //     {                      
+            //     <HomeProducts title={product.title}
+            //     description={product.description} 
+            //     image={product.image} 
+            //     price={product.price} 
+            //     featured={product.featured}
+            //     key={product.id} />}       
+            //      )}}
+            //     </div>
 
 
-    
-    // return (
-    //     <div className="featuredProducts">
-    //         {
+    if(productsData.map(feature =>)){
+    return (
+        <div className="featuredProducts">
+            {
            
-    //         }
-    //     </div>
+            }
+        </div>
         // <div className="featuredProduct">                
         //     {productsData.map( product => (
         //        <HomeProducts title={product.title}
@@ -48,7 +50,8 @@ const [ productsData, setData ] = useState([]);
         //         key={product.id} />
         //     ))}        
         // </div>
-    // )
+    ) }
 }
+
 
 export default FeaturedProducts
