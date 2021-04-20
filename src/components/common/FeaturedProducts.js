@@ -17,40 +17,22 @@ const [ productsData, setData ] = useState([]);
      
     }
 
-    console.log(productsData[1].featured)
+    const productsDataFiltered = productsData.filter(product => product.featured === true);
 
-            // return <div className="featuredProduct">                
-            // {productsData.map( product => {
-            //     if(product.featured === true)
-                
-            //     {                      
-            //     <HomeProducts title={product.title}
-            //     description={product.description} 
-            //     image={product.image} 
-            //     price={product.price} 
-            //     featured={product.featured}
-            //     key={product.id} />}       
-            //      )}}
-            //     </div>
-
-
-    if(productsData.map(feature =>)){
     return (
-        <div className="featuredProducts">
-            {
-           
-            }
-        </div>
-        // <div className="featuredProduct">                
-        //     {productsData.map( product => (
-        //        <HomeProducts title={product.title}
-        //         description={product.description} 
-        //         image={product.image} 
-        //         price={product.price} 
-        //         key={product.id} />
-        //     ))}        
-        // </div>
-    ) }
+        <div className ="featuredProducts"> 
+            { productsDataFiltered.map(product =>
+            (<HomeProducts
+                title={product.title}
+                description={product.description} 
+                image={product.image} 
+                price={product.price} 
+                key={product.id}
+            />)) } 
+       </div>)
+         
+
+    
 }
 
 

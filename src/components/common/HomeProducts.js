@@ -10,7 +10,7 @@ const HomeProducts = (props) => {
              <img src={baseUrl + props.image.formats.medium.url} alt="object"/>
              <p>{props.description}</p>
              <h4>{props.price}</h4>
-             <h4 className="featured">{props.featured}</h4>
+             <span>{props.featured}</span>
         </div>
     )
 };
