@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { baseUrl } from "../settings/Api";
-import HomeProducts from './HomeProducts';
+import AllProducts from './AllProducts';
 
 function FeaturedProducts() {
 
@@ -22,7 +22,7 @@ const [ productsData, setData ] = useState([]);
     return (
         <div className ="featuredProducts"> 
             { productsDataFiltered.map(product =>
-            (<HomeProducts
+            (<AllProducts
                 title={product.title}
                 description={product.description} 
                 image={product.image} 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Switch,
     Route,
     NavLink
@@ -12,19 +12,20 @@ import FormControl from "react-bootstrap/FormControl";
 import Button  from 'react-bootstrap/Button';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
+import ProductDetail from '../pages/ProductDetail';
 
 
 function NavigationBar() {
     return (
     <>
-        <Router>      
+        <BrowserRouter>      
             <div>
 
             <Navbar bg="dark" variant="dark">
                     <Navbar.Brand href="/">Navbar</Navbar.Brand>
                     <Nav className="mr-auto">
                         <NavLink exact to="/">Home</NavLink>
-                        <NavLink to="/products">Products</NavLink>
+                        <NavLink exact to="/products">Products</NavLink>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -44,12 +45,16 @@ function NavigationBar() {
                 <Route exact path="/">
                     <Home />
                 </Route>
-                <Route path="/products">
+                <Route exact path="/products">
                     <Products />
                 </Route>
+                <Route path="/products/productdetail">
+                    <ProductDetail />
+                </Route>
                 </Switch>
+
             </div>
-        </Router>
+        </BrowserRouter>
         </>
   )
 

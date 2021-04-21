@@ -2,7 +2,7 @@ import React from 'react';
  import { baseUrl } from "../settings/Api";
 
 
-const HomeProducts = (props) => {
+const AllProducts = (props) => {
 
     return (
         <div>
@@ -15,4 +15,4 @@ const HomeProducts = (props) => {
     )
 };
 
-export default HomeProducts;
+export default AllProducts;
