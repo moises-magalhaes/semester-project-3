@@ -42,13 +42,13 @@ function NavigationBar() {
                 of them to render at a time
                 */}
                 <Switch>
-                <Route exact path="/">
+                <Route exact path="/" component={Home}>
                     <Home />
                 </Route>
-                <Route exact path="/products">
+                <Route exact path="/products" component={Products}>
                     <Products />
                 </Route>
-                <Route path="/products/productdetail">
+                <Route path="/products/:id" component={ProductDetail}>
                     <ProductDetail />
                 </Route>
                 </Switch>

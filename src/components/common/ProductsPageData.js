@@ -7,7 +7,7 @@ import { baseUrl } from "../settings/Api";
 import AllProducts from './AllProducts';
 
 
-function ProductsPageData() {
+function ProductsPageData(props) {
 
 const [ productsData, setData ] = useState([]);
 
@@ -19,6 +19,7 @@ const [ productsData, setData ] = useState([]);
        await fetch(baseUrl +"/products/")
         .then(response => response.json())
         .then((json) => setData(json))
+
      
     }
 
@@ -32,14 +33,13 @@ const [ productsData, setData ] = useState([]);
                 key={product.id} />  
                 
                  
-                <Link to="/products/productdetail" key={product.id}><Button>Check Product</Button></Link>
-                    
-
-                   
+                <Link to={`/products/${product.id}`} key={product.id}><Button>Check Product</Button></Link>
+                                       
                 </div>  
                 
-
+               
             ))} 
+            
             
         </div>
     )
