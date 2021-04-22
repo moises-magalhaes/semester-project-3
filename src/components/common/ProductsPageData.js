@@ -13,6 +13,9 @@ const [ productsData, setData ] = useState([]);
 
     useEffect (() => {
         loadData();
+
+        console.log(props)
+
             }, []);
 
     const loadData = async () => {
