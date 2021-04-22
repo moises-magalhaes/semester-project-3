@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Button } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
 
@@ -12,31 +13,33 @@ function ProductDetailData() {
 
     useEffect (() => {
        loadData();
-           });
+           },[]);
 
         const loadData = async () => {
-           await fetch(baseUrl +`/products/`+`${id}`)
+           await fetch(baseUrl +`/products/${id}`)
            .then(response => response.json())
            .then((json) => setData(json))
    }
 
    useEffect (() => {
        loadImage();
-           });
+           },[]);
 
         const loadImage = async () => {
-           await fetch(baseUrl +`/products/`+`${id}`)
+           await fetch(baseUrl +`/products/${id}`)
            .then(response => response.json())
            .then((json) => setImage(json.image.formats.medium))
    }
-
+   console.log(productData)
 
    return (
        <>
            <div>
                <h4>{productData.title}</h4>
-               <p>{productData.description}</p>
                <img src={baseUrl + imageData.url} alt="Shoes" />
+               <h4>NOK: {productData.price}</h4>
+               <p>{productData.description}</p>
+               <Button>Add to cart</Button>
            </div>
            
        </>
