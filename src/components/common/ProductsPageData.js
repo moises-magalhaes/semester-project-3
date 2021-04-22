@@ -7,7 +7,7 @@ import { baseUrl } from "../settings/Api";
 import AllProducts from './AllProducts';
 
 
-function ProductsPageData(props) {
+function ProductsPageData() {
 
 const [ productsData, setData ] = useState([]);
 
@@ -26,14 +26,14 @@ const [ productsData, setData ] = useState([]);
     return (
         <div className="products">               
             {productsData.map( product => (
-               <div className="product">
+               <div className="product"  key={product.title}>
                <AllProducts title={product.title}
                 image={product.image} 
                 price={product.price} 
                 key={product.id} />  
                 
                  
-                <Link to={`/products/${product.id}`} key={product.id}><Button>Check Product</Button></Link>
+                <Link to={`/products/${product.id}`} key={product.price}><Button>Check Product</Button></Link>
                                        
                 </div>  
                 
