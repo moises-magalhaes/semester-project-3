@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductsPageData from '../common/ProductsPageData';
 import SearchBar from '../common/SearchBar';
 // import {baseUrl } from "../settings/Api";
@@ -6,7 +6,7 @@ import SearchBar from '../common/SearchBar';
 function Products() {
 
     // const [state, setState] = useState({
-    //     results= []
+    //     results: []
 
     // });
 

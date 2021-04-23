@@ -6,7 +6,6 @@ function SearchBar(props) {
      const [search, setSearch] = useState("");
 
     const handleInput = (e) => setSearch(e.target.value);
-
     console.log(handleInput)
         // setSearch(product);
 
@@ -17,7 +16,7 @@ function SearchBar(props) {
     // };
 
     return (
-        <div className="control">
+        <div className="box">
            <input className="input"
             onChange={handleInput} 
             // onKeyPress={handleEnterkeyPressed} 
