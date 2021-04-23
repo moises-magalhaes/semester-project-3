@@ -5,25 +5,15 @@ import {
 import { Button } from 'react-bootstrap';
 import { baseUrl } from "../settings/Api";
 import AllProducts from './AllProducts';
-import SearchBar from './SearchBar';
 
 
-// constructor(props){
-//     super(props);
-//     this.state = {}
-//    }
-
-// function searchingFor(term){
-//     return function(x) {
-//         return x.title.toLowerCase().includes(term.toLowerCase()) || !term;
-//     }
-// }
 
 function ProductsPageData() {
     const [ productsData, setData ] = useState([]);
+    const [ search, setSearch ] = useState("");
+    const [ filteredSearch, setFilteredSearch] = useState([]);
 
-    // const [search, setSearch] = useState("");
-
+   
         useEffect (() => {
             loadData();
                 }, []);
@@ -34,18 +24,27 @@ function ProductsPageData() {
             .then((json) => setData(json))  
         }
 
-        const [search, setSearch] = useState("");
-
-        const handleInput = (e) => setSearch(e.target.value);
-    
-
+        useEffect(()=>{
+            setFilteredSearch(
+                productsData.filter( product => {
+                    return (
+                        product.title.toLowerCase().includes( search.toLowerCase() )|| product.description.toLowerCase().includes( search.toLowerCase())
+                        )
+                 })
+            )
+        }, [search, productsData])
 
         return (
             <>    
+            
+                <input className="input"
+                     onChange= { e => setSearch(e.target.value)}
+                    // value= "" 
+                    type="text" 
+                    placeholder="Search" />
+
                 <div className="products">           
-                {/* {productsData.filter(searchingFor(productsData.term)).map( product => ( */}
-                    <SearchBar />
-                    {productsData.map( product => (
+                    {filteredSearch.map( product => (
                     <div className="product"  key={product.title}>
                     <AllProducts title={product.title}
                         image={product.image} 
@@ -62,6 +61,7 @@ function ProductsPageData() {
                     
                     
                 </div>
+            
             </>
         )
  
