@@ -7,9 +7,6 @@ import {
 } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button  from 'react-bootstrap/Button';
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import ProductDetail from '../pages/ProductDetail';
@@ -27,10 +24,7 @@ function NavigationBar() {
                         <NavLink exact to="/">Home</NavLink>
                         <NavLink exact to="/products">Products</NavLink>
                     </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form>
+                   
                 </Navbar>
            
 
