@@ -1,28 +1,12 @@
-// import React, { useEffect, useState } from 'react'
-// import { useParams } from 'react-router';
+import React from 'react'
 
-// function CartData() {
-
-//     const [ cart, setCart ] = useState([]);
-//     const [ cartPage, setCartPage ] = useState([]);
-
-//     const { cart } = useParams();
-
-//     useEffect (() => {
-//         loadData();
-//             },[]);
+function CartData() {
  
-//          const loadData = async () => {
-//             await fetch(baseUrl +`/products/${id}`)
-//             .then(response => response.json())
-//             .then((json) => setData(json))
-//     }
- 
-//     return (
-//         <div>
+    return (
+        <div>
             
-//         </div>
-//     )
-// }
+        </div>
+    )
+}
 
-// export default CartData
+export default CartData

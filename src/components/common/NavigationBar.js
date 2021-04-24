@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter,
+    BrowserRouter as Router,
     Switch,
     Route,
     NavLink
@@ -16,7 +16,7 @@ import Cart from '../pages/Cart';
 function NavigationBar() {
     return (
     <>
-        <BrowserRouter>      
+        <Router>      
             <div>
 
             <Navbar bg="dark" variant="dark">
@@ -37,22 +37,22 @@ function NavigationBar() {
                 of them to render at a time
                 */}
                 <Switch>
-                <Route exact path="/" component={Home}>
-                    <Home />
-                </Route>
-                <Route exact path="/products" component={Products}>
-                    <Products />
-                </Route>
-                <Route path="/products/:id" component={ProductDetail}>
-                    <ProductDetail />
-                </Route>
-                <Route path="/cart" component={Cart}>
-                    <Cart />
-                </Route>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/products">
+                        <Products />
+                    </Route>
+                    <Route path="/products/:id">
+                        <ProductDetail />
+                    </Route>
+                    <Route path="/cart">
+                        <Cart />
+                    </Route>
                 </Switch>
 
             </div>
-        </BrowserRouter>
+        </Router>
         </>
   )
 
