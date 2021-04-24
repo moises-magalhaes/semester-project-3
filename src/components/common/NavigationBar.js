@@ -16,7 +16,7 @@ import Cart from '../pages/Cart';
 function NavigationBar() {
     return (
     <>
-        <Router>      
+        <Router key="navbar">      
             <div>
 
             <Navbar bg="dark" variant="dark">

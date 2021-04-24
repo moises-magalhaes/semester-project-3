@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
+import LocalStorageProducts from './LocalStorageProducts';
 
 
-function CartData() {
+const cartFromLocalStorage =  JSON.parse(localStorage.getItem("shoes") || "[]");
 
-    const [ productData, setData ] = useState({});
-    const [ imageData, setImage ] = useState([]);
-    const [ cart, setCart ] = useState([]);
 
- 
+function CartData(props) {
 
-    const RemoveFromCart = (productData) => {
-    setCart([...cart, productData]);
-}
+    // const [ imageData, setImage ] = useState([]);
+    const [ cart, setCart ] = useState([cartFromLocalStorage]);
 
- 
+//     const RemoveFromCart = (cart) => {
+//     setCart([...cart, cart]);
+// }
 
     useEffect (() =>{
         const data = localStorage.getItem("shoes");
@@ -28,21 +27,40 @@ function CartData() {
 
      
 
-    useEffect (() =>{
-        localStorage.setItem("shoes", JSON.stringify(cart));
-     })
+    // useEffect (() =>{
+    //     localStorage.setItem("shoes", JSON.stringify(cart));
+    //  }, [cart])
 
 
-
+    console.log(cart)
    return (
        <>
 
-        <div className="product">
-                    <h4>{cart.title}</h4>
-                    {/* <img src={baseUrl + imageData.url} alt="Shoes" /> */}
-                    <h4>NOK: {cart.price}</h4>
-                    <p>{cart.description}</p>
-                    <Button onClick={()=> RemoveFromCart(productData)}> Remove from cart</Button>
+                <div className="products">           
+                    
+                    {cart.map( product => (
+                    <div className="product"  key={product.title}>
+
+                        <h3>{product.title}</h3>
+                        <p>{product.description}</p>
+                        <h4>{product.price}</h4>
+{/*                         
+                    <LocalStorageProducts title={product.title}
+                        image={product.image} 
+                        price={product.price} 
+                        key={product.id} />  
+                         */}
+                        
+                        {/* <Link to={`/products/${product.id}`} key={product.price}><Button>Check Product</Button></Link> */}
+                                            
+                        </div>  
+                        
+                    
+                        ))} 
+                    
+                    <Button> Remove from cart</Button>
+
+                    {/* <Button onClick={()=> RemoveFromCart(productData)}> Remove from cart</Button> */}
                     <Link to="/products"><Button> back to shopping</Button></Link>
                     
                     {/* <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length}) </Button></Link> */}
