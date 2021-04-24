@@ -26,8 +26,8 @@ function ProductDetailData() {
 
    const addToCart = (productData) => {
     setCart([...cart, productData]);
-}
 
+}
    useEffect (() => {
        loadImage();
            },[]);

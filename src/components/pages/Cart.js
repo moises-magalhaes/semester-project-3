@@ -1,12 +1,13 @@
 import React from 'react'
+import CartData from '../common/CartData'
 
 
 function Cart() {
  
     return (
         <>
-            <div>oxe</div>       
-        </>
+            <CartData/>     
+       </>
     )
 }
 
