@@ -33,24 +33,40 @@ function ProductDetailData() {
            .then((json) => setImage(json.image.formats.medium))
    }
 
+   function useLocalState(localProduct) {
+    const [ local, setLocalState] = useState(localStorage.getItem(localProduct));
+
+    function SetLocation(newProduct) {
+        localStorage.setItem(localProduct, newProduct);
+        setLocalState(newProduct)
+    
+    }
+    return  [ local, SetLocation ]; 
+
+   }
+
+    // const [ productData, addToCart] = useLocalState(productData);
+
    const addToCart = (productData) => {
        console.log("we are in addToCart")
        setCart([...cart, productData]);
        
    }
+//   
 
    return (
        <>
-           <div>
-               <h4>{productData.title}</h4>
-               <img src={baseUrl + imageData.url} alt="Shoes" />
-               <h4>NOK: {productData.price}</h4>
-               <p>{productData.description}</p>
-               <Button onClick={()=> addToCart(productData)}>Add to cart</Button>
-               <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length})</Button></Link>
 
-           </div>
-           
+<div className="product">
+            <h4>{productData.title}</h4>
+            <img src={baseUrl + imageData.url} alt="Shoes" />
+            <h4>NOK: {productData.price}</h4>
+            <p>{productData.description}</p>
+            <Button onClick={()=> addToCart(productData)}>Add to cart</Button>
+            <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length})</Button></Link>
+
+        </div>           
+        
        </>
    )
 
