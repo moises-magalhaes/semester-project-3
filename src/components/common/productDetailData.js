@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Cart from '../pages/Cart';
 import { baseUrl } from "../settings/Api";
 
 function ProductDetailData() {
 
-    const [ productData, setData ] = React.useState({});
-    const [ imageData, setImage ] = React.useState({});
+    const [ productData, setData ] = useState({});
+    const [ imageData, setImage ] = useState({});
+    const [ cart, setCart ] = useState([]);
 
     const { id } = useParams();
    
@@ -30,7 +32,12 @@ function ProductDetailData() {
            .then(response => response.json())
            .then((json) => setImage(json.image.formats.medium))
    }
-   console.log(productData)
+
+   const addToCart = (productData) => {
+       console.log("we are in addToCart")
+       setCart([...cart, productData]);
+       
+   }
 
    return (
        <>
@@ -39,7 +46,9 @@ function ProductDetailData() {
                <img src={baseUrl + imageData.url} alt="Shoes" />
                <h4>NOK: {productData.price}</h4>
                <p>{productData.description}</p>
-               <Button>Add to cart</Button>
+               <Button onClick={()=> addToCart(productData)}>Add to cart</Button>
+               <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length})</Button></Link>
+
            </div>
            
        </>

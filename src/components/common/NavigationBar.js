@@ -10,6 +10,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Home from '../pages/Home';
 import Products from '../pages/Products';
 import ProductDetail from '../pages/ProductDetail';
+import Cart from '../pages/Cart';
 
 
 function NavigationBar() {
@@ -44,6 +45,9 @@ function NavigationBar() {
                 </Route>
                 <Route path="/products/:id" component={ProductDetail}>
                     <ProductDetail />
+                </Route>
+                <Route path="/cart" component={Cart}>
+                    <Cart />
                 </Route>
                 </Switch>
 

@@ -24,6 +24,8 @@ function ProductsPageData() {
             .then((json) => setData(json))  
         }
 
+        // search box
+
         useEffect(()=>{
             setFilteredSearch(
                 productsData.filter( product => {
@@ -39,7 +41,7 @@ function ProductsPageData() {
             
                 <input className="input"
                      onChange= { e => setSearch(e.target.value)}
-                    // value= "" 
+               
                     type="text" 
                     placeholder="Search" />
 
