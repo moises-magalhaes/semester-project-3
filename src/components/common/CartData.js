@@ -16,8 +16,6 @@ function CartData() {
     const [ cart, setCart ] = useState([cartFromLocalStorage]);
     const [ image, setImage ] = useState([cartFromLocalStorage]);
 
-    const [productValue, setProductValue] = useState("");
-
 //     const RemoveFromCart = (cart) => {
 //     setCart([...cart, cart]);
 // }
@@ -44,23 +42,11 @@ function CartData() {
         )
      }
 
-    //  const sum = cart.map((product) => {
-    //     let value = 0;
-    //     console.log(product.price)
-    //    const total = value += product.price;  
-    //     console.log(value);
-    //     return total;
-    // })
-    const sum =cart.map((product) => {
-        let addition = product.price;
-        for (let i=0; i< product.length; i++){
-            addition.reduce(function (a, b) {
-            return a + b;
-            }, 0)
-        } 
-    })
+     // Total value
+     const sum = cart.reduce((accumulator, product) => accumulator + product.price, 0);
 
-    console.log(sum); 
+    // Fixed Total with 2 decimal number
+     let TotalValue = sum.toFixed(2)
 
    return (
        <>
@@ -85,7 +71,8 @@ function CartData() {
                         ))}             
                 </div>           
                 <div>
-                    <h3>Total price: {sum}</h3>
+                <h3>Total price: {TotalValue}</h3>
+                    {/* <h3>Total price: {sum}</h3> */}
                 </div>
             </>
         )
