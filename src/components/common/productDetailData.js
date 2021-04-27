@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Link, useParams } from "react-router-dom";
-// import Cart from '../pages/Cart';
 import { baseUrl } from "../settings/Api";
 
 function ProductDetailData() {
