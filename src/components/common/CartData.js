@@ -14,7 +14,8 @@ function CartData() {
 
     
     const [ cart, setCart ] = useState([cartFromLocalStorage]);
-    const [ image, setImage ] = useState([cartFromLocalStorage]);
+    const { url } = cart;
+   console.log(url);   
 
 //     const RemoveFromCart = (cart) => {
 //     setCart([...cart, cart]);
@@ -27,16 +28,6 @@ function CartData() {
         }
      }, [])
 
-
-     
-    useEffect (() =>{
-        const imageData = localStorage.getItem("shoes");
-        if (imageData){
-            setImage(JSON.parse(imageData));
-        }
-     }, [])
-
-
      const removeFromCart = (productToRemove) => {
         setCart(cart.filter(product => product !==productToRemove)
         )
@@ -48,31 +39,33 @@ function CartData() {
     // Fixed Total with 2 decimal number
      let TotalValue = sum.toFixed(2)
 
+  
    return (
        <>
 
                 <div className="products">           
                     
-                    {cart.map( (product, idx) => (
+                    {cart.map((product, idx) => (
                         <div className="product"  key={idx}>
                             <h3>{product.title}</h3>
                             {/* <CartProducts
                             image={product.image} 
                             /> */}
+
+
+                            {/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
+
                             {/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
                             <h4>{product.price}</h4>
-                            
-                            {/* <Link to={`/products/${product.id}`} key={product.price}><Button>Check Product</Button></Link> */}
-                            <Button onClick={()=> removeFromCart(product)}> Remove from cart</Button>
+                           <Button onClick={()=> removeFromCart(product)}> Remove from cart</Button>
 
                             <Link to="/products"><Button> back to shopping</Button></Link>    
                         </div>                         
-                    
+
                         ))}             
                 </div>           
                 <div>
-                <h3>Total price: {TotalValue}</h3>
-                    {/* <h3>Total price: {sum}</h3> */}
+                    <h3>Total price: {TotalValue}</h3>
                 </div>
             </>
         )
