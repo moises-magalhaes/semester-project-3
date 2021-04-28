@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { baseUrl } from '../settings/Api';
 import CartProducts from './CartProducts';
+import EmptyCart from './EmptyCart';
 
 
 
@@ -14,12 +15,8 @@ function CartData() {
 
     
     const [ cart, setCart ] = useState([cartFromLocalStorage]);
-    const { url } = cart;
-   console.log(url);   
+   console.log(cart);   
 
-//     const RemoveFromCart = (cart) => {
-//     setCart([...cart, cart]);
-// }
 
     useEffect (() =>{
         const data = localStorage.getItem("shoes");
@@ -39,38 +36,39 @@ function CartData() {
     // Fixed Total with 2 decimal number
      let TotalValue = sum.toFixed(2)
 
-  
-   return (
-       <>
+  if (cart.length === 0 ) {
+      return <EmptyCart />
+  } else {
+        return (
+                    <>
+                        <div className="products">           
+                            
+                            {cart.map((product, idx) => (
+                                <div className="product"  key={idx}>
+                                    <h3>{product.title}</h3>
+                                    {/* <CartProducts
+                                    image={product.image} 
+                                    /> */}
 
-                <div className="products">           
-                    
-                    {cart.map((product, idx) => (
-                        <div className="product"  key={idx}>
-                            <h3>{product.title}</h3>
-                            {/* <CartProducts
-                            image={product.image} 
-                            /> */}
 
+                                    {/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
 
-                            {/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
+                                    {/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
+                                    <h4>{product.price}</h4>
+                                <Button onClick={()=> removeFromCart(product)}> Remove from cart</Button>
 
-                            {/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
-                            <h4>{product.price}</h4>
-                           <Button onClick={()=> removeFromCart(product)}> Remove from cart</Button>
+                                    <Link to="/products"><Button> back to shopping</Button></Link>    
+                                </div>                         
 
-                            <Link to="/products"><Button> back to shopping</Button></Link>    
-                        </div>                         
-
-                        ))}             
-                </div>           
-                <div>
-                    <h3>Total price: {TotalValue}</h3>
-                </div>
-            </>
-        )
-
+                                ))}             
+                        </div>           
+                        <div>
+                            <h3>Total price: {TotalValue}</h3>
+                        </div>
+                    </>
+                )
         }
+}
 
 
 export default CartData
