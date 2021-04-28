@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { baseUrl } from '../settings/Api';
-import CartProducts from './CartProducts';
+// import { baseUrl } from '../settings/Api';
+// import CartProducts from './CartProducts';
 import EmptyCart from './EmptyCart';
 
 
@@ -15,9 +15,10 @@ function CartData() {
 
     
     const [ cart, setCart ] = useState([cartFromLocalStorage]);
-   console.log(cart);   
 
+    let [ image, setImage ] = useState([cartFromLocalStorage]);
 
+    
     useEffect (() =>{
         const data = localStorage.getItem("shoes");
         if (data){
@@ -25,10 +26,33 @@ function CartData() {
         }
      }, [])
 
+    // const flatArray = image.flat((entry)=> {
+    //     if(Array.isArray(entry)) {
+    //         return entry;
+    //     }
+   
+    //      });
+
+    //      console.log(flatArray)
+
+
+// let {
+//     array:{image: {formats: {thumbnail: {url}}}}
+// } = image; 
+
+// console.log(url)
+// console.log(image);
+
+
      const removeFromCart = (productToRemove) => {
         setCart(cart.filter(product => product !==productToRemove)
-        )
+        )   
      }
+
+     // Updating localStorage after removal of Items
+     useEffect (() =>{
+        localStorage.setItem("shoes", JSON.stringify(cart));
+     })
 
      // Total value
      const sum = cart.reduce((accumulator, product) => accumulator + product.price, 0);
