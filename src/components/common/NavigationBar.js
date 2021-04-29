@@ -11,6 +11,8 @@ import Home from '../pages/Home';
 import Products from '../pages/Products';
 import ProductDetail from '../pages/ProductDetail';
 import Cart from '../pages/Cart';
+import Admin from '../pages/Admin';
+import Login from '../pages/Login';
 
 
 function NavigationBar() {
@@ -24,6 +26,9 @@ function NavigationBar() {
                     <Nav className="mr-auto">
                         <NavLink exact to="/">Home</NavLink>
                         <NavLink exact to="/products">Products</NavLink>
+                        <NavLink exact to="/Login">Login</NavLink>
+                        <NavLink exact to="/Admin">Admin</NavLink>
+
                     </Nav>
                    
                 </Navbar>
@@ -48,6 +53,12 @@ function NavigationBar() {
                     </Route>
                     <Route path="/cart">
                         <Cart />
+                    </Route>
+                    <Route path="/Login">
+                        <Login />
+                    </Route>
+                    <Route path="/Admin">
+                        <Admin />
                     </Route>
                 </Switch>
 

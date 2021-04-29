@@ -16,7 +16,7 @@ function CartData() {
     
     const [ cart, setCart ] = useState([cartFromLocalStorage]);
 
-    let [ image, setImage ] = useState([cartFromLocalStorage]);
+    // let [ image, setImage ] = useState([cartFromLocalStorage]);
 
     
     useEffect (() =>{

@@ -26,7 +26,7 @@ const [ heroData, setData ] = useState([]);
         <div>                
             <Jumbotron>
                 
-                <img src={newUrl} alt="object" />              
+                <img src={newUrl} alt="Bergen" />              
                 
             </Jumbotron> 
         </div>
