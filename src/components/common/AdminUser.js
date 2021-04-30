@@ -3,55 +3,32 @@ import { Button } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 
-async function AdminUser(email, password) {
-	const url = baseUrl + "/auth/local";
+function AdminUser(email, password) {
+	const [user, setUser] = useState({
+		identifier: email,
+		password: password,
+	});
 
-	const data = JSON.stringify({ identifier: email, password: password });
+	// const data = JSON.stringify({ identifier: email, password: password });
 
-	const options = {
-		method: "POST",
-		body: data,
-		headers: {
-			"content-type": "application/json",
-		},
-	};
+	const [error, setError] = useState("");
 
-	try {
-		const response = await fetch(url, options);
-		const json = await response.json();
-
-		console.log(json);
-	} catch (error) {
-		console.log("error", error);
-	}
-
-	// const [addLogin, setAddLogin] = useState({
-	// 	email: "",
-	// 	password: "",
-	// 	login: false,
-	// 	store: "",
-	// });
-	// const [error, setError] = useState("");
-
-	// const Login = (details) => {
-	// 	console.log(details);
-
-	// 	fetch(baseUrl + "/auth/local", {
-	// 		method: "Post",
-	// 		body: JSON.stringify(useState()),
-	// 	}).then((response) => {
-	// 		response.json().then((result) => {
-	// 			console.log("result", result);
-	// 			localStorage.setItem(
-	// 				"login",
-	// 				JSON.stringify({
-	// 					login: true,
-	// 					token: result.token,
-	// 				})
-	// 			);
-	// 		});
-	// 	});
-	// };
+	fetch(baseUrl + "/auth/local", {
+		method: "Post",
+		body: JSON.stringify(useState({ user })),
+		// body: JSON.stringify(useState()),
+	}).then((response) => {
+		response.json().then((result) => {
+			console.log("result", result);
+			localStorage.setItem(
+				"login",
+				JSON.stringify({
+					login: true,
+					token: result.token,
+				})
+			);
+		});
+	});
 
 	// const adminUserInfo = {
 	// 	email: "admin@admin.com",
@@ -61,9 +38,9 @@ async function AdminUser(email, password) {
 	// const [user, setUser] = useState({ name: "", email: "" });
 	// const [error, setError] = useState("");
 
-	// const Login = (details) => {
-	// 	console.log(details);
-
+	const Login = (details) => {
+		console.log(details);
+	};
 	// 	if (
 	// 		details.email === adminUserInfo.email &&
 	// 		details.password === adminUserInfo.password
@@ -78,27 +55,23 @@ async function AdminUser(email, password) {
 	// 		console.log("details do not match");
 	// 		setError("details do not match");
 	// 	}
-	// };
 
 	const Logout = () => {
-		setAddLogin({ email: "", password: "" });
+		setUser({ name: "", email: "" });
 	};
 	return (
 		<>
 			<div>
 				{" "}
-				{/* {addLogin.email !== "" ? ( */}
-				{email !== "" ? (
+				{user.email !== "" ? (
 					<div className="welcome">
 						<h2>
-							Welcome, <span>you </span>
-							{/* Welcome, <span>{addLogin.name} </span> */}
+							Welcome, <span>{user.name} </span>
 						</h2>
 						<Button onClick={Logout}> Logout </Button>
 					</div>
 				) : (
-					<AdminLogin />
-					// <AdminLogin Login={Login} error={error} />
+					<AdminLogin Login={Login} error={error} />
 				)}
 			</div>
 		</>

@@ -16,7 +16,7 @@ function AdminLogin({ Login, error }) {
 				<div className="container">
 					{/* <Form onSubmit="{submitHandler}"> */}
 					<Form onSubmit={submitHandler}>
-						<Form.Group controlId="formBasicName">
+						{/* <Form.Group controlId="formBasicName">
 							<Form.Label>Name</Form.Label>
 							<Form.Control
 								type="Name"
@@ -26,7 +26,7 @@ function AdminLogin({ Login, error }) {
 								}
 								value={details.name}
 							/>
-						</Form.Group>
+						</Form.Group> */}
 
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
