@@ -1,57 +1,33 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
-import axios from "axios";
 
 function AdminUser() {
-<<<<<<< HEAD
-	const [user, setUser] = useState({ name: "", email: "" });
+
+	const [addLogin, setAddLogin] = useState({email:"", password:"", login: false, store:""})
 	const [error, setError] = useState("");
 
-	const Login = (details) => {
-		axios
-			.post(baseUrl + "/auth/local", {
-				identifier: "admin@admin.com",
-				password: "Pass1234",
-                
-			})
-			.then((response) => {
-				//Store user token in cookie or localstorage, then use it in all next requests.
-				console.log("Your user token", response.data.jwt);
-				console.log("Logged in");
-			})
-			.catch((error) => {
-				// Something wrong with auth. Wrong credentials maybe.
-				console.log("An error occurred:", error.response);
-				setError("Details do not match");
-			});
+	fetch(baseUrl+"/auth/local", {
+		method:"Post",
+		body: JSON.stringify(useState())
+	}).then((response)=> {
+		response.json().then((result)=>{
+			console.log("result", result);
+			localStorage.setItem("login",JSON.stringify({
+				login:true,
+				token: result.token
+			}))
+		})
 
+	})
 
-            if (
-                details.email === identifier &&
-                details.password === password
-            ) {
-                console.log("Logged in");
-                    setUser({
-                    name: details.name,
-                    email: details.email,
-                });
-            } else {
-                        console.log("details do not match");
-                        setError("Details do not match");
-                    }
-                }
-                
-    // const adminUserInfo = {
+ 
+
+	// const adminUserInfo = {
 	// 	email: "admin@admin.com",
-	// 	password: "admin123",
+	// 	password: "Pass1234",
 	// };
-=======
-	const adminUserInfo = {
-		email: "admin@admin.com",
-		password: "admin123",
-	};
->>>>>>> parent of 2905bb7 (Fetch from Strapi not working)
 
 	// const [user, setUser] = useState({ name: "", email: "" });
 	// const [error, setError] = useState("");
@@ -65,26 +41,15 @@ function AdminUser() {
 	// 	) {
 	// 		console.log("Logged in");
 
-<<<<<<< HEAD
 	// 		setUser({
 	// 			name: details.name,
 	// 			email: details.email,
 	// 		});
 	// 	} else {
 	// 		console.log("details do not match");
-	// 		setError("Details do not match");
+	// 		setError("details do not match");
 	// 	}
 	// };
-=======
-			setUser({
-				name: details.name,
-				email: details.email,
-			});
-		} else {
-			console.log("details do not match");
-		}
-	};
->>>>>>> parent of 2905bb7 (Fetch from Strapi not working)
 
 	const Logout = () => {
 		setUser({ name: "", email: "" });
