@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import AdminUser from "./AdminUser";
+// import AdminUser from "./AdminUser";
 
 function AdminLogin({ Login, error }) {
 	const [details, setDetails] = useState({ name: "", email: "", password: "" });
@@ -16,7 +16,7 @@ function AdminLogin({ Login, error }) {
 				<div className="container">
 					{/* <Form onSubmit="{submitHandler}"> */}
 					<Form onSubmit={submitHandler}>
-						<Form.Group controlId="formBasicEmail">
+						<Form.Group controlId="formBasicName">
 							<Form.Label>Name</Form.Label>
 							<Form.Control
 								type="Name"

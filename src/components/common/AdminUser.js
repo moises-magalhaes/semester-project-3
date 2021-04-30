@@ -4,25 +4,33 @@ import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 
 function AdminUser() {
-
-	const [addLogin, setAddLogin] = useState({email:"", password:"", login: false, store:""})
+	const [addLogin, setAddLogin] = useState({
+		email: "",
+		password: "",
+		login: false,
+		store: "",
+	});
 	const [error, setError] = useState("");
 
-	fetch(baseUrl+"/auth/local", {
-		method:"Post",
-		body: JSON.stringify(useState())
-	}).then((response)=> {
-		response.json().then((result)=>{
-			console.log("result", result);
-			localStorage.setItem("login",JSON.stringify({
-				login:true,
-				token: result.token
-			}))
-		})
+	const Login = (details) => {
+		console.log(details);
 
-	})
-
- 
+		fetch(baseUrl + "/auth/local", {
+			method: "Post",
+			body: JSON.stringify(useState()),
+		}).then((response) => {
+			response.json().then((result) => {
+				console.log("result", result);
+				localStorage.setItem(
+					"login",
+					JSON.stringify({
+						login: true,
+						token: result.token,
+					})
+				);
+			});
+		});
+	};
 
 	// const adminUserInfo = {
 	// 	email: "admin@admin.com",
@@ -52,16 +60,16 @@ function AdminUser() {
 	// };
 
 	const Logout = () => {
-		setUser({ name: "", email: "" });
+		setAddLogin({ name: "", email: "" });
 	};
 	return (
 		<>
 			<div>
 				{" "}
-				{user.email !== "" ? (
+				{addLogin.email !== "" ? (
 					<div className="welcome">
 						<h2>
-							Welcome, <span>{user.name} </span>
+							Welcome, <span>{addLogin.name} </span>
 						</h2>
 						<Button onClick={Logout}> Logout </Button>
 					</div>
