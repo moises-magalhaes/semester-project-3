@@ -3,34 +3,55 @@ import { Button } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 
-function AdminUser() {
-	const [addLogin, setAddLogin] = useState({
-		email: "",
-		password: "",
-		login: false,
-		store: "",
-	});
-	const [error, setError] = useState("");
+async function AdminUser(email, password) {
+	const url = baseUrl + "/auth/local";
 
-	const Login = (details) => {
-		console.log(details);
+	const data = JSON.stringify({ identifier: email, password: password });
 
-		fetch(baseUrl + "/auth/local", {
-			method: "Post",
-			body: JSON.stringify(useState()),
-		}).then((response) => {
-			response.json().then((result) => {
-				console.log("result", result);
-				localStorage.setItem(
-					"login",
-					JSON.stringify({
-						login: true,
-						token: result.token,
-					})
-				);
-			});
-		});
+	const options = {
+		method: "POST",
+		body: data,
+		headers: {
+			"content-type": "application/json",
+		},
 	};
+
+	try {
+		const response = await fetch(url, options);
+		const json = await response.json();
+
+		console.log(json);
+	} catch (error) {
+		console.log("error", error);
+	}
+
+	// const [addLogin, setAddLogin] = useState({
+	// 	email: "",
+	// 	password: "",
+	// 	login: false,
+	// 	store: "",
+	// });
+	// const [error, setError] = useState("");
+
+	// const Login = (details) => {
+	// 	console.log(details);
+
+	// 	fetch(baseUrl + "/auth/local", {
+	// 		method: "Post",
+	// 		body: JSON.stringify(useState()),
+	// 	}).then((response) => {
+	// 		response.json().then((result) => {
+	// 			console.log("result", result);
+	// 			localStorage.setItem(
+	// 				"login",
+	// 				JSON.stringify({
+	// 					login: true,
+	// 					token: result.token,
+	// 				})
+	// 			);
+	// 		});
+	// 	});
+	// };
 
 	// const adminUserInfo = {
 	// 	email: "admin@admin.com",
@@ -60,21 +81,24 @@ function AdminUser() {
 	// };
 
 	const Logout = () => {
-		setAddLogin({ name: "", email: "" });
+		setAddLogin({ email: "", password: "" });
 	};
 	return (
 		<>
 			<div>
 				{" "}
-				{addLogin.email !== "" ? (
+				{/* {addLogin.email !== "" ? ( */}
+				{email !== "" ? (
 					<div className="welcome">
 						<h2>
-							Welcome, <span>{addLogin.name} </span>
+							Welcome, <span>you </span>
+							{/* Welcome, <span>{addLogin.name} </span> */}
 						</h2>
 						<Button onClick={Logout}> Logout </Button>
 					</div>
 				) : (
-					<AdminLogin Login={Login} error={error} />
+					<AdminLogin />
+					// <AdminLogin Login={Login} error={error} />
 				)}
 			</div>
 		</>
