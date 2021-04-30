@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 import axios from "axios";
 
 function AdminUser() {
+<<<<<<< HEAD
 	const [user, setUser] = useState({ name: "", email: "" });
 	const [error, setError] = useState("");
 
@@ -46,6 +46,12 @@ function AdminUser() {
 	// 	email: "admin@admin.com",
 	// 	password: "admin123",
 	// };
+=======
+	const adminUserInfo = {
+		email: "admin@admin.com",
+		password: "admin123",
+	};
+>>>>>>> parent of 2905bb7 (Fetch from Strapi not working)
 
 	// const [user, setUser] = useState({ name: "", email: "" });
 	// const [error, setError] = useState("");
@@ -59,6 +65,7 @@ function AdminUser() {
 	// 	) {
 	// 		console.log("Logged in");
 
+<<<<<<< HEAD
 	// 		setUser({
 	// 			name: details.name,
 	// 			email: details.email,
@@ -68,6 +75,16 @@ function AdminUser() {
 	// 		setError("Details do not match");
 	// 	}
 	// };
+=======
+			setUser({
+				name: details.name,
+				email: details.email,
+			});
+		} else {
+			console.log("details do not match");
+		}
+	};
+>>>>>>> parent of 2905bb7 (Fetch from Strapi not working)
 
 	const Logout = () => {
 		setUser({ name: "", email: "" });
