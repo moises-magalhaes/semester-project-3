@@ -14,20 +14,7 @@ function AdminLogin({ Login, error }) {
 		<div>
 			<>
 				<div className="container">
-					{/* <Form onSubmit="{submitHandler}"> */}
 					<Form onSubmit={submitHandler}>
-						{/* <Form.Group controlId="formBasicName">
-							<Form.Label>Name</Form.Label>
-							<Form.Control
-								type="Name"
-								placeholder="Enter name"
-								onChange={(e) =>
-									setDetails({ ...details, name: e.target.value })
-								}
-								value={details.name}
-							/>
-						</Form.Group> */}
-
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
 							<Form.Control

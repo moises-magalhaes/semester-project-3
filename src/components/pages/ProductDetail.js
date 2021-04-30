@@ -1,12 +1,12 @@
-import React from 'react'
-import ProductDetailData from '../common/ProductDetailData';
+import React from "react";
+import ProductDetailData from "../common/productDetailData";
 
 function ProductDetail() {
-    return (
-    <>
-    <ProductDetailData />
-    </>
-    )
+	return (
+		<>
+			<ProductDetailData />
+		</>
+	);
 }
 
-export default ProductDetail
+export default ProductDetail;

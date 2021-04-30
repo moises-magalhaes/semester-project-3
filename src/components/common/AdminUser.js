@@ -7,6 +7,8 @@ function AdminUser(email, password) {
 	const [user, setUser] = useState({
 		identifier: email,
 		password: password,
+		login: false,
+		store: "",
 	});
 
 	// const data = JSON.stringify({ identifier: email, password: password });
@@ -15,7 +17,7 @@ function AdminUser(email, password) {
 
 	fetch(baseUrl + "/auth/local", {
 		method: "Post",
-		body: JSON.stringify(useState({ user })),
+
 		// body: JSON.stringify(useState()),
 	}).then((response) => {
 		response.json().then((result) => {
@@ -40,21 +42,22 @@ function AdminUser(email, password) {
 
 	const Login = (details) => {
 		console.log(details);
-	};
-	// 	if (
-	// 		details.email === adminUserInfo.email &&
-	// 		details.password === adminUserInfo.password
-	// 	) {
-	// 		console.log("Logged in");
 
-	// 		setUser({
-	// 			name: details.name,
-	// 			email: details.email,
-	// 		});
-	// 	} else {
-	// 		console.log("details do not match");
-	// 		setError("details do not match");
-	// 	}
+		// 	if (
+		// 		details.email === adminUserInfo.email &&
+		// 		details.password === adminUserInfo.password
+		// 	) {
+		// 		console.log("Logged in");
+
+		// 		setUser({
+		// 			name: details.name,
+		// 			email: details.email,
+		// 		});
+		// 	} else {
+		// 		console.log("details do not match");
+		// 		setError("details do not match");
+		// 	}
+	};
 
 	const Logout = () => {
 		setUser({ name: "", email: "" });
