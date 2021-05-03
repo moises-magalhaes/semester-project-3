@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
+import PostProducts from "./PostProducts";
 
 function AdminUser() {
 	const [user, setUser] = useState({
@@ -51,6 +52,8 @@ function AdminUser() {
 		});
 	};
 
+	console.log(user.token);
+
 	const Logout = () => {
 		localStorage.removeItem("login");
 		setUser({
@@ -62,13 +65,15 @@ function AdminUser() {
 
 	return (
 		<>
-			<div>
-				{/* {" "} */}
+			<div className="container">
+				{" "}
 				{user.token !== "" ? (
 					<div className="welcome">
 						<h2>
-							Welcome, <span>{user.email} </span>
+							Welcome, <span>{user.username} </span>
 						</h2>
+						<PostProducts />
+
 						<Button onClick={Logout}> Logout </Button>
 					</div>
 				) : (
