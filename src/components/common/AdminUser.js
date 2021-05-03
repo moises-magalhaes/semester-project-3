@@ -3,12 +3,12 @@ import { Button } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 
-function AdminUser(email, password) {
+function AdminUser() {
 	const [user, setUser] = useState({
-		identifier: email,
-		password: password,
+		identifier: "",
+		password: "",
 		login: false,
-		store: "",
+		token: "",
 	});
 
 	// const data = JSON.stringify({ identifier: email, password: password });
