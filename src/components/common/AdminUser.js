@@ -11,65 +11,63 @@ function AdminUser() {
 		token: "",
 	});
 
-	// const data = JSON.stringify({ identifier: email, password: password });
-
 	const [error, setError] = useState("");
-
-	fetch(baseUrl + "/auth/local", {
-		method: "Post",
-
-		// body: JSON.stringify(useState()),
-	}).then((response) => {
-		response.json().then((result) => {
-			console.log("result", result);
-			localStorage.setItem(
-				"login",
-				JSON.stringify({
-					login: true,
-					token: result.token,
-				})
-			);
-		});
-	});
-
-	// const adminUserInfo = {
-	// 	email: "admin@admin.com",
-	// 	password: "Pass1234",
-	// };
-
-	// const [user, setUser] = useState({ name: "", email: "" });
-	// const [error, setError] = useState("");
 
 	const Login = (details) => {
 		console.log(details);
 
-		// 	if (
-		// 		details.email === adminUserInfo.email &&
-		// 		details.password === adminUserInfo.password
-		// 	) {
-		// 		console.log("Logged in");
+		fetch(baseUrl + "/auth/local", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+			},
 
-		// 		setUser({
-		// 			name: details.name,
-		// 			email: details.email,
-		// 		});
-		// 	} else {
-		// 		console.log("details do not match");
-		// 		setError("details do not match");
-		// 	}
+			body: JSON.stringify({
+				identifier: details.email,
+				password: details.password,
+			}),
+		}).then((response) => {
+			response.json().then((result) => {
+				if (result.message) {
+					console.log("wrong credentials");
+					setError("Wrong credentials");
+				} else {
+					localStorage.setItem(
+						"login",
+						JSON.stringify({
+							login: true,
+							token: result.jwt,
+						})
+					);
+
+					console.log("Signed in");
+					setUser({
+						identifier: details.email,
+						login: true,
+						token: result.jwt,
+					});
+				}
+			});
+		});
 	};
 
 	const Logout = () => {
-		setUser({ name: "", email: "" });
+		localStorage.removeItem("login");
+		setUser({
+			identifier: "",
+			login: false,
+			token: "",
+		});
 	};
+
 	return (
 		<>
 			<div>
-				{" "}
-				{user.email !== "" ? (
+				{/* {" "} */}
+				{user.token !== "" ? (
 					<div className="welcome">
 						<h2>
-							Welcome, <span>{user.name} </span>
+							Welcome, <span>{user.email} </span>
 						</h2>
 						<Button onClick={Logout}> Logout </Button>
 					</div>
