@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "./AdminLogin";
 
 function PostProducts() {
-	const [details, setDetails] = useState({ title: "", description: "" });
+	const [details, setDetails] = useState({
+		title: "",
+		description: "",
+		price: "",
+		image:[],
+	});
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
-		console.log(e.target);
 	};
 
 	const [product, setProduct] = useState({
@@ -17,44 +21,44 @@ function PostProducts() {
 		description: "",
 		url: baseUrl + "/products/",
 		data: {},
-		// login: false,
-		// token: "",
 	});
 
-	if (product.status === 200) {
-		alert("successfully created new Product");
-		window.location = window.location.href;
-	}
+	// if (product.status === 200) {
+	// 	alert("successfully created new Product");
+	// 	window.location = window.location.href;
+	// }
 
 	const [error, setError] = useState("");
 
+	//fetch from LocalStorage
+	const keyFromLocalStorage = JSON.parse(localStorage.getItem("login") || "[]");
 
-	const Post = (details, key, value) => {
+	const [getToken, setGetToken] = useState([keyFromLocalStorage]);
+
+	useEffect(() => {
+		const value = localStorage.getItem("login");
+		if (value) {
+			setGetToken(JSON.parse(value));
+		}
+	}, []);
+
+
+
+	const Post = (details) => {
 		console.log(details);
-
-        const [storedValue, setStoredValue] = useState(() => {
-            try {
-              // Get from local storage by key
-              const item = window.localStorage.getItem(key);
-              // Parse stored json or if none return value
-              return item ? JSON.parse(item) : value;
-            } catch (error) {
-              // If error also return value
-              console.log(error);
-              return value;
-            }
-        });
 
 
 		fetch(baseUrl + "/products/", {
 			method: "POST",
 			headers: {
 				"Content-type": "application/json",
-				Authorization: `Bearer ${storedValue}`,
+				Authorization: `Bearer ${getToken.token}`,
 			},
 			body: JSON.stringify({
 				title: details.title,
 				description: details.description,
+				price: details.price,
+				image: details.image.url,
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -62,26 +66,15 @@ function PostProducts() {
 					console.log(error, "wrong credentials");
 					setError(error, "Wrong credentials");
 				} else {
-					localStorage.setItem(
-						"setProduct",
-						JSON.stringify({
-							// login: true,
-							// token: result.jwt,
-						})
-					);
+					localStorage.setItem("setProduct", JSON.stringify({}));
 
 					console.log("setProduct");
 					setProduct({
 						title: details.title,
 						description: details.description,
-						// login: true,
-						// token: result.jwt,
+						price: details.price,
+						image: details.image.url,
 					});
-
-                    setStoredValue({
-                        login: true,
-						token: result.jwt,
-                    })
 				}
 			});
 		});
@@ -104,7 +97,16 @@ function PostProducts() {
 					</Form.Group>
 
 					<Form.Group>
-						<Form.File id="addImage" label="Add Image here" />
+						<Form.File
+							id="addImage"
+							label="Add Image here"
+							type="text"
+							placeholder="Enter title"
+							onChange={(e) =>
+								setDetails({ ...details, image:{url: e.target.value} })
+							}
+							value={details.image}
+						/>
 					</Form.Group>
 					<Form.Group controlId="textArea">
 						<Form.Label>Description</Form.Label>
@@ -117,19 +119,18 @@ function PostProducts() {
 							value={details.description}
 						/>
 					</Form.Group>
-					<Form>
-						<Form.Group controlId="price">
-							<Form.Label>Price</Form.Label>
-							<Form.Control
-								type="number"
-								placeholder="Write the price of the product"
-								onChange={(e) =>
-									setDetails({ ...details, price: e.target.value })
-								}
-								value={details.price}
-							/>
-						</Form.Group>
-					</Form>
+
+					<Form.Group controlId="price">
+						<Form.Label>Price</Form.Label>
+						<Form.Control
+							type="number"
+							placeholder="Write the price of the product"
+							onChange={(e) =>
+								setDetails({ ...details, price: e.target.value })
+							}
+							value={details.price}
+						/>
+					</Form.Group>
 
 					<Button
 						variant="primary"
