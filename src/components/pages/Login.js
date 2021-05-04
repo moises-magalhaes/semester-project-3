@@ -1,12 +1,12 @@
-import React from 'react'
-import UserLogin from '../common/UserLogin'
+import React from "react";
+import AdminUser from "../common/AdminUser";
 
 function Login() {
-    return (
-        <div>
-            <UserLogin />
-        </div>
-    )
+	return (
+		<div>
+			<AdminUser />
+		</div>
+	);
 }
 
-export default Login
+export default Login;

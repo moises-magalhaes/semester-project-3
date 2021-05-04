@@ -20,7 +20,9 @@ function PostProducts() {
 		// login: false,
 		// token: "",
 	});
+    const [key, setKey] = useState([]);
 
+    
 	if (product.status === 200) {
 		alert("successfully created new Product");
 		window.locatiom = window.location.href;
@@ -31,10 +33,25 @@ function PostProducts() {
 	const Post = (details) => {
 		console.log(details);
 
+        const getDataFromStorage = () => {
+
+            try {
+                const loginInfo = localStorage.getItem ("login");
+                const loggedIn = loginInfo !== null ? JSON.parse(loginInfo) : [];
+                setKey(loggedIn)
+
+            } catch(error) {
+
+            }
+
+        };
+
 		fetch(baseUrl + "/products/", {
 			method: "POST",
 			headers: {
+                
 				"Content-type": "application/json",
+                Authorization: `Bearer ${key}`
 			},
 			body: JSON.stringify({
 				title: details.title,
