@@ -9,7 +9,7 @@ function PostProducts() {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
-		console.log("fileUpload.handleChange e.target", e.target);
+		console.log(e.target);
 	};
 
 	const [product, setProduct] = useState({
@@ -20,38 +20,37 @@ function PostProducts() {
 		// login: false,
 		// token: "",
 	});
-    const [key, setKey] = useState([]);
 
-    
 	if (product.status === 200) {
 		alert("successfully created new Product");
-		window.locatiom = window.location.href;
+		window.location = window.location.href;
 	}
 
 	const [error, setError] = useState("");
 
-	const Post = (details) => {
+
+	const Post = (details, key, value) => {
 		console.log(details);
 
-        const getDataFromStorage = () => {
-
+        const [storedValue, setStoredValue] = useState(() => {
             try {
-                const loginInfo = localStorage.getItem ("login");
-                const loggedIn = loginInfo !== null ? JSON.parse(loginInfo) : [];
-                setKey(loggedIn)
-
-            } catch(error) {
-
+              // Get from local storage by key
+              const item = window.localStorage.getItem(key);
+              // Parse stored json or if none return value
+              return item ? JSON.parse(item) : value;
+            } catch (error) {
+              // If error also return value
+              console.log(error);
+              return value;
             }
+        });
 
-        };
 
 		fetch(baseUrl + "/products/", {
 			method: "POST",
 			headers: {
-                
 				"Content-type": "application/json",
-                Authorization: `Bearer ${key}`
+				Authorization: `Bearer ${storedValue}`,
 			},
 			body: JSON.stringify({
 				title: details.title,
@@ -60,13 +59,13 @@ function PostProducts() {
 		}).then((response) => {
 			response.json().then((result) => {
 				if (result.message) {
-					console.log("wrong credentials");
-					setError("Wrong credentials");
+					console.log(error, "wrong credentials");
+					setError(error, "Wrong credentials");
 				} else {
 					localStorage.setItem(
 						"setProduct",
 						JSON.stringify({
-							// post: true,
+							// login: true,
 							// token: result.jwt,
 						})
 					);
@@ -75,9 +74,14 @@ function PostProducts() {
 					setProduct({
 						title: details.title,
 						description: details.description,
-						// post: true,
+						// login: true,
 						// token: result.jwt,
 					});
+
+                    setStoredValue({
+                        login: true,
+						token: result.jwt,
+                    })
 				}
 			});
 		});
