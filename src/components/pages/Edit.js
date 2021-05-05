@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
 
 function Edit() {
@@ -13,9 +13,9 @@ function Edit() {
 
 	const { id } = useParams();
 
-	useEffect(() => {
-		Edit(details);
-	}, []);
+	// useEffect(() => {
+	// 	Edit(details);
+	// }, []);
 
 	if (!id) {
 		document.location.href = "/";
@@ -25,19 +25,6 @@ function Edit() {
 		e.preventDefault();
 		Edit(details);
 	};
-
-	const [product, setProduct] = useState({
-		title: "",
-		description: "",
-		url: baseUrl + `/products/${id}`,
-		data: {},
-		id: "",
-	});
-
-	// if (product.status === 200) {
-	// 	alert("successfully created new Product");
-	// 	window.location = window.location.href;
-	// }
 
 	const [error, setError] = useState("");
 
@@ -76,10 +63,10 @@ function Edit() {
 					console.log(error, "wrong credentials");
 					setError(error, "Wrong credentials");
 				} else {
-					localStorage.setItem("setProduct", JSON.stringify({}));
+					localStorage.setItem("setDetails", JSON.stringify({}));
 
 					console.log("setProduct");
-					setProduct({
+					setDetails({
 						title: details.title,
 						description: details.description,
 						price: details.price,
@@ -98,22 +85,41 @@ function Edit() {
 					<Form.Label>Id of Product</Form.Label>
 					<Form.Control id="ProductId" />
 				</Form.Group>
+
 				<Form.Group>
 					<Form.Label>Name of Product</Form.Label>
-					<Form.Control id="name" />
+					<Form.Control
+						id="title"
+						onChange={(e) => setDetails({ ...details, title: e.target.value })}
+						value={details.title}
+					/>
 				</Form.Group>
 
 				<Form.Group>
-					<Form.File id="name" />
+					<Form.File
+						id="image"
+						// onChange={(e) => setDetails({ ...details, image: e.target.value })}
+						// value={details.image}
+					/>
 				</Form.Group>
 				<Form.Group>
 					<Form.Label>Description</Form.Label>
-					<Form.Control id="description" />
+					<Form.Control
+						id="description"
+						onChange={(e) =>
+							setDetails({ ...details, description: e.target.value })
+						}
+						value={details.description}
+					/>
 				</Form.Group>
 
 				<Form.Group>
 					<Form.Label>Price</Form.Label>
-					<Form.Control id="price" />
+					<Form.Control
+						id="price"
+						onChange={(e) => setDetails({ ...details, price: e.target.value })}
+						value={details.price}
+					/>
 				</Form.Group>
 
 				<Button
