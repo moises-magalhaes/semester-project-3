@@ -16,9 +16,9 @@ function PostProducts() {
 		Post(details);
 	};
 
-	useEffect(() => {
-		Post(details);
-	}, []);
+	// useEffect(() => {
+	// 	Post(details);
+	// }, []);
 
 	const [product, setProduct] = useState({
 		title: "",
@@ -83,7 +83,6 @@ function PostProducts() {
 				}
 			});
 		});
-		
 	};
 
 	return (

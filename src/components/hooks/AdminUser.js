@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
-import AdminLogin from "./AdminLogin";
+import AdminLogin from "../common/AdminLogin";
 import PostProducts from "./PostProducts";
 
 function AdminUser() {

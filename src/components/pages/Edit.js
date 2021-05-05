@@ -11,11 +11,13 @@ function Edit() {
 		image: [],
 	});
 
-	const { id } = useParams();
+	const [DeleteProduct, setDeleteProduct] = useState({});
 
-	// useEffect(() => {
-	// 	Edit(details);
-	// }, []);
+	// const confirmDelete = window.confirm(
+	// 	"Are you sure you want to delete this item?"
+	// );
+
+	const { id } = useParams();
 
 	if (!id) {
 		document.location.href = "/";
@@ -23,7 +25,15 @@ function Edit() {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		Edit(details);
+		EditProduct(details);
+	};
+
+	const handleDelete = (e) => {
+		e.preventDefault();
+
+		if (window.confirm("Are you sure you wish to delete this item?")) {
+			deleteProduct();
+		}
 	};
 
 	const [error, setError] = useState("");
@@ -41,7 +51,7 @@ function Edit() {
 		}
 	}, []);
 
-	const Edit = (details) => {
+	const EditProduct = (details) => {
 		console.log(details);
 
 		fetch(baseUrl + `/products/${id}`, {
@@ -71,6 +81,30 @@ function Edit() {
 						description: details.description,
 						price: details.price,
 						// image: { formats: { medium: details.image.formats.medium } },
+						id: details.id,
+					});
+				}
+			});
+		});
+	};
+
+	const deleteProduct = (details) => {
+		console.log(details);
+
+		fetch(baseUrl + `/products/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-type": "application/json",
+				Authorization: `Bearer ${getToken.token}`,
+			},
+		}).then((response) => {
+			response.json().then((result) => {
+				if (result.message) {
+					console.log(error, "wrong credentials");
+					setError(error, "Wrong credentials");
+				} else {
+					localStorage.setItem("setDetails", JSON.stringify({}));
+					setDetails({
 						id: details.id,
 					});
 				}
@@ -135,7 +169,7 @@ function Edit() {
 					variant="primary"
 					type="submit"
 					className="submitButton"
-					onClick={submitHandler}
+					onClick={handleDelete}
 				>
 					Delete
 				</Button>

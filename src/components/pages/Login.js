@@ -1,5 +1,5 @@
 import React from "react";
-import AdminUser from "../common/AdminUser";
+import AdminUser from "../hooks/AdminUser";
 
 function Login() {
 	return (

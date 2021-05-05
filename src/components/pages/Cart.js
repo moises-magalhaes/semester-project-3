@@ -1,14 +1,12 @@
-import React from 'react'
-import CartData from '../common/CartData'
-
+import React from "react";
+import CartData from "../hooks/CartData";
 
 function Cart() {
- 
-    return (
-        <>
-            <CartData/>     
-       </>
-    )
+	return (
+		<>
+			<CartData />
+		</>
+	);
 }
 
-export default Cart
+export default Cart;
