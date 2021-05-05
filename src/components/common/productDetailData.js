@@ -13,6 +13,7 @@ function ProductDetailData() {
 	useEffect(() => {
 		loadData();
 	}, []);
+	// const [error, setError] = useState("");
 
 	const loadData = async () => {
 		await fetch(baseUrl + `/products/${id}`)
@@ -28,9 +29,15 @@ function ProductDetailData() {
 	}, []);
 
 	const loadImage = async () => {
-		await fetch(baseUrl + `/products/${id}`)
-			.then((response) => response.json())
-			.then((json) => setImage(json.image.formats.medium));
+		await fetch(baseUrl + `/products/${id}`).then((response) => {
+			response.json().then((result) => {
+				if (result.image.formats === "" || result.image.formats === undefined) {
+					return (result.image.formats = "no image added");
+				} else {
+					setImage(result.image.formats.medium);
+				}
+			});
+		});
 	};
 
 	useEffect(() => {

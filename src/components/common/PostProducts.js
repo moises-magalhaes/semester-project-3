@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
-import AdminLogin from "./AdminLogin";
 
 function PostProducts() {
 	const [details, setDetails] = useState({
 		title: "",
 		description: "",
 		price: "",
-		image:[],
+		image: [],
+		formats: "",
 	});
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
 	};
+
+	useEffect(() => {
+		Post(details);
+	}, []);
 
 	const [product, setProduct] = useState({
 		title: "",
@@ -42,11 +46,8 @@ function PostProducts() {
 		}
 	}, []);
 
-
-
 	const Post = (details) => {
 		console.log(details);
-
 
 		fetch(baseUrl + "/products/", {
 			method: "POST",
@@ -58,7 +59,9 @@ function PostProducts() {
 				title: details.title,
 				description: details.description,
 				price: details.price,
-				image: details.image.url,
+				// image: {
+				// 	formats: { medium: { url: details.image.formats.medium.url } },
+				// },
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -67,17 +70,20 @@ function PostProducts() {
 					setError(error, "Wrong credentials");
 				} else {
 					localStorage.setItem("setProduct", JSON.stringify({}));
-
 					console.log("setProduct");
+
 					setProduct({
 						title: details.title,
 						description: details.description,
 						price: details.price,
-						image: details.image.url,
+						// image: {
+						// 	formats: { medium: { url: details.image.formats.medium.url } },
+						// },
 					});
 				}
 			});
 		});
+		
 	};
 
 	return (
@@ -100,10 +106,10 @@ function PostProducts() {
 						<Form.File
 							id="addImage"
 							label="Add Image here"
-							type="text"
+							type="image"
 							placeholder="Enter title"
 							onChange={(e) =>
-								setDetails({ ...details, image:{url: e.target.value} })
+								setDetails({ ...details, image: e.target.value })
 							}
 							value={details.image}
 						/>
