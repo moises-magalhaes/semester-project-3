@@ -1,0 +1,13 @@
+.navbar {
+    background-color: $color-primary !important;
+  .navbar-nav{
+      padding: 20px;
+      a{
+          padding: 20px;
+          &.active {
+              color: $light;
+          }      
+      }
+ 
+  }
+}

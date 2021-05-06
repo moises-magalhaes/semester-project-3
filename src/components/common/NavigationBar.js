@@ -21,7 +21,9 @@ function NavigationBar() {
 			<Router key="navbar">
 				<div>
 					<Navbar bg="dark" variant="dark">
-						<Navbar.Brand href="/">Navbar</Navbar.Brand>
+						<Navbar.Brand href="/">
+							<img src="../images/logo-semester-3.svg" alt="logo" />
+						</Navbar.Brand>
 						<Nav className="mr-auto">
 							<NavLink exact to="/">
 								Home
