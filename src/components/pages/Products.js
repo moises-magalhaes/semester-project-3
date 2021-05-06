@@ -1,13 +1,14 @@
-import React from 'react';
-import ProductsPageData from '../common/ProductsPageData';
+import React from "react";
+import ProductsPageData from "../common/ProductsPageData";
 
 function Products() {
-
-    return (
-        <>
-            <ProductsPageData />
-        </>
-    )
+	return (
+		<div id="productsPage">
+			<div className="container">
+				<ProductsPageData />
+			</div>
+		</div>
+	);
 }
 
-export default Products
+export default Products;
