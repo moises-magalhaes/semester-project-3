@@ -1,12 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./partials/base";
 @import "./partials/navbar";
-@import "./partials/";
-
-
-
-/*@import "./Partials/form";
-@import "./Partials/tabs";
-@import "./Partials/typography";
-@import "./Partials/accordion";
-@import "./Partials/jumbo";*/
+@import "./partials/typography";
+@import "./partials/layout/hero";
+@import "./partials/layout/home";
+@import "./partials/layout/footer";
+@import "./partials/button";

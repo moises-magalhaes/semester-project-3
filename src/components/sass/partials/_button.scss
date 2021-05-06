@@ -1,0 +1,9 @@
+.btn-primary {
+	background-color: $color-secondary;
+	border: none !important;
+	color: $black;
+	&:hover {
+		background-color: $color-primary !important;
+		color: black !important;
+	}
+}

@@ -14,30 +14,34 @@ import Cart from "../pages/Cart";
 import Admin from "../pages/Admin";
 import Login from "../pages/Login";
 import Edit from "../pages/Edit";
+import { NavDropdown } from "react-bootstrap";
 
 function NavigationBar() {
 	return (
 		<>
 			<Router key="navbar">
 				<div>
-					<Navbar bg="dark" variant="dark">
+					<Navbar bg="light" expand="lg">
 						<Navbar.Brand href="/">
 							<img src="../images/logo-semester-3.svg" alt="logo" />
 						</Navbar.Brand>
-						<Nav className="mr-auto">
-							<NavLink exact to="/">
-								Home
-							</NavLink>
-							<NavLink exact to="/products">
-								Products
-							</NavLink>
-							<NavLink exact to="/login">
-								Login
-							</NavLink>
-							<NavLink exact to="/admin">
-								Admin
-							</NavLink>
-						</Nav>
+						<Navbar.Toggle aria-controls="basic-navbar-nav" />
+						<Navbar.Collapse id="basic-navbar-nav">
+							<Nav className="mr-auto">
+								<NavLink exact to="/">
+									Home
+								</NavLink>
+								<NavLink exact to="/products">
+									Products
+								</NavLink>
+								<NavLink exact to="/login">
+									Login
+								</NavLink>
+								<NavLink exact to="/admin">
+									Admin
+								</NavLink>
+							</Nav>
+						</Navbar.Collapse>
 					</Navbar>
 
 					{/*

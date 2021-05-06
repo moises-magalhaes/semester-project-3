@@ -4,10 +4,16 @@ import Hero from "../common/Hero";
 
 function Home() {
 	return (
-		<>
+		<div id="home">
 			<Hero />
-			<FeaturedProducts />
-		</>
+			<div className="container">
+				<div className="introduction">
+					<h1>Welcome to SuperBoutique Website</h1>
+					<h2>The best sport products in town</h2>
+				</div>
+				<FeaturedProducts />
+			</div>
+		</div>
 	);
 }
 
