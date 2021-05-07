@@ -1,0 +1,12 @@
+.products-page {
+	display: flex;
+}
+
+.card {
+	margin-bottom: 20px;
+	.product {
+		.card-body {
+			text-align: center;
+		}
+	}
+}

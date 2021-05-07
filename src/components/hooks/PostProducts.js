@@ -87,66 +87,58 @@ function PostProducts() {
 
 	return (
 		<>
-			<div>
-				<Form onSubmit={submitHandler}>
-					<Form.Group controlId="title">
-						<Form.Label>Name of Product</Form.Label>
-						<Form.Control
-							type="text"
-							placeholder="Enter title"
-							onChange={(e) =>
-								setDetails({ ...details, title: e.target.value })
-							}
-							value={details.title}
-						/>
-					</Form.Group>
+			<Form onSubmit={submitHandler}>
+				<Form.Group controlId="title">
+					<Form.Label>Name of Product</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder="Enter title"
+						onChange={(e) => setDetails({ ...details, title: e.target.value })}
+						value={details.title}
+					/>
+				</Form.Group>
 
-					<Form.Group>
-						<Form.File
-							id="addImage"
-							label="Add Image here"
-							type="image"
-							placeholder="Enter title"
-							onChange={(e) =>
-								setDetails({ ...details, image: e.target.value })
-							}
-							value={details.image}
-						/>
-					</Form.Group>
-					<Form.Group controlId="textArea">
-						<Form.Label>Description</Form.Label>
-						<Form.Control
-							type="textarea"
-							placeholder="Write the product description here"
-							onChange={(e) =>
-								setDetails({ ...details, description: e.target.value })
-							}
-							value={details.description}
-						/>
-					</Form.Group>
+				<Form.Group>
+					<Form.File
+						id="addImage"
+						label="Add Image here"
+						type="image"
+						placeholder="Enter title"
+						onChange={(e) => setDetails({ ...details, image: e.target.value })}
+						value={details.image}
+					/>
+				</Form.Group>
+				<Form.Group controlId="textArea">
+					<Form.Label>Description</Form.Label>
+					<Form.Control
+						type="textarea"
+						placeholder="Write the product description here"
+						onChange={(e) =>
+							setDetails({ ...details, description: e.target.value })
+						}
+						value={details.description}
+					/>
+				</Form.Group>
 
-					<Form.Group controlId="price">
-						<Form.Label>Price</Form.Label>
-						<Form.Control
-							type="number"
-							placeholder="Write the price of the product"
-							onChange={(e) =>
-								setDetails({ ...details, price: e.target.value })
-							}
-							value={details.price}
-						/>
-					</Form.Group>
+				<Form.Group controlId="price">
+					<Form.Label>Price</Form.Label>
+					<Form.Control
+						type="number"
+						placeholder="Write the price of the product"
+						onChange={(e) => setDetails({ ...details, price: e.target.value })}
+						value={details.price}
+					/>
+				</Form.Group>
 
-					<Button
-						variant="primary"
-						type="submit"
-						onClick={submitHandler}
-						className="submitButton"
-					>
-						Submit
-					</Button>
-				</Form>
-			</div>
+				<Button
+					variant="primary"
+					type="submit"
+					onClick={submitHandler}
+					className="submitButton"
+				>
+					Submit
+				</Button>
+			</Form>
 		</>
 	);
 }

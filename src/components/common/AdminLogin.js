@@ -11,49 +11,41 @@ function AdminLogin({ Login, error }) {
 	};
 
 	return (
-		<div>
-			<>
-				<div className="container">
-					<Form onSubmit={submitHandler}>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label>Email address</Form.Label>
-							<Form.Control
-								type="email"
-								placeholder="Enter email"
-								onChange={(e) =>
-									setDetails({ ...details, email: e.target.value })
-								}
-								value={details.email}
-							/>
-							<Form.Text className="text-muted">Check your email</Form.Text>
-						</Form.Group>
+		<>
+			<Form onSubmit={submitHandler}>
+				<Form.Group controlId="formBasicEmail">
+					<Form.Label>Email address</Form.Label>
+					<Form.Control
+						type="email"
+						placeholder="Enter email"
+						onChange={(e) => setDetails({ ...details, email: e.target.value })}
+						value={details.email}
+					/>
+					<Form.Text className="text-muted">Check your email</Form.Text>
+				</Form.Group>
 
-						<Form.Group controlId="formBasicPassword">
-							<Form.Label>Password</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Password"
-								onChange={(e) =>
-									setDetails({ ...details, password: e.target.value })
-								}
-								value={details.password}
-							/>
-						</Form.Group>
-						<Form.Group controlId="formBasicCheckbox">
-							<Form.Check type="checkbox" label="Check me out" />
-						</Form.Group>
-						<Button
-							onClick={submitHandler}
-							className="submitButton"
-							variant="primary"
-							type="submit"
-						>
-							Login
-						</Button>
-					</Form>
-				</div>
-			</>
-		</div>
+				<Form.Group controlId="formBasicPassword">
+					<Form.Label>Password</Form.Label>
+					<Form.Control
+						type="password"
+						placeholder="Password"
+						onChange={(e) =>
+							setDetails({ ...details, password: e.target.value })
+						}
+						value={details.password}
+					/>
+				</Form.Group>
+
+				<Button
+					onClick={submitHandler}
+					className="submitButton"
+					variant="primary"
+					type="submit"
+				>
+					Login
+				</Button>
+			</Form>
+		</>
 	);
 }
 

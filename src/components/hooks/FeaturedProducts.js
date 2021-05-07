@@ -24,7 +24,7 @@ function FeaturedProducts() {
 		<>
 			<div className="featuredProducts">
 				{productsDataFiltered.map((product) => (
-					<Card style={{ width: "18rem" }}>
+					<Card>
 						<Card.Img
 							variant="top"
 							src={baseUrl + product.image.formats.medium.url}
@@ -36,17 +36,6 @@ function FeaturedProducts() {
 						</Card.Body>
 					</Card>
 				))}
-
-				{/* <div className="featuredProducts">
-				{productsDataFiltered.map((product) => (
-					<AllProducts
-						title={product.title}
-						description={product.description}
-						image={product.image}
-						price={product.price}
-						key={product.id}
-					/> */}
-				{/* ))} */}
 			</div>
 		</>
 	);

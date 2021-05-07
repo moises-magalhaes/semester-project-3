@@ -34,16 +34,21 @@ function ProductsPageData() {
 
 	return (
 		<>
-			<input
-				className="searchInput"
-				onChange={(e) => setSearch(e.target.value)}
-				type="text"
-				placeholder="Search"
-			/>
+			<div className="products-page">
+				<h1>Our Products</h1>
+				<div className="search-box">
+					<input
+						className="searchInput"
+						onChange={(e) => setSearch(e.target.value)}
+						type="text"
+						placeholder="Search"
+					/>
+				</div>
+			</div>
 
 			<div className="products">
 				{filteredSearch.map((product) => (
-					<Card style={{ width: "18rem" }}>
+					<Card>
 						<div className="product" key={product.title}>
 							<Card.Img
 								variant="top"

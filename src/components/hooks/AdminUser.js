@@ -65,8 +65,7 @@ function AdminUser() {
 
 	return (
 		<>
-			<div className="container">
-				{" "}
+			<div>
 				{user.token !== "" ? (
 					<div className="welcome">
 						<h2>

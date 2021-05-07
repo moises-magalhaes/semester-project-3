@@ -3,9 +3,9 @@ import ProductDetailData from "../common/productDetailData";
 
 function ProductDetail() {
 	return (
-		<>
+		<div className="container">
 			<ProductDetailData />
-		</>
+		</div>
 	);
 }
 

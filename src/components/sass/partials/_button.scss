@@ -7,3 +7,12 @@
 		color: black !important;
 	}
 }
+
+.btn-secondary {
+	border: none !important;
+	margin-left: 10px;
+	&:hover {
+		background-color: $color-primary !important;
+		color: black !important;
+	}
+}

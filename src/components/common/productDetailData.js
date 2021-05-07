@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
 
@@ -54,17 +54,21 @@ function ProductDetailData() {
 	return (
 		<>
 			<div className="product">
-				<h4>{productData.title}</h4>
-				<img src={baseUrl + imageData.url} alt="Shoes" />
-				<h4>NOK: {productData.price}</h4>
-				<p>{productData.description}</p>
-				<Button onClick={() => addToCart(productData)}> Add to cart</Button>
-				<Link to="/cart">
-					<Button>Go to cart ({cart.length}) </Button>
-				</Link>
-
-				{/* <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length}) </Button></Link> */}
+				<h1>{productData.title}</h1>
+				<Card>
+					<Card.Img variant="top" src={baseUrl + imageData.url} />
+					<Card.Body>
+						<Card.Title>{productData.title}</Card.Title>
+						<Card.Text>kr {productData.price}</Card.Text>
+						<Button onClick={() => addToCart(productData)}> Add to cart</Button>
+						<Link to="/cart">
+							<Button variant="secondary">Go to cart</Button>
+						</Link>
+					</Card.Body>
+				</Card>
 			</div>
+
+			{/* <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length}) </Button></Link> */}
 		</>
 	);
 }
