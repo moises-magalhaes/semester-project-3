@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // import { baseUrl } from '../settings/Api';
 // import CartProducts from './CartProducts';
@@ -58,29 +58,34 @@ function CartData() {
 			<>
 				<div className="products">
 					{cart.map((product, idx) => (
-						<div className="product" key={idx}>
-							<h3>{product.title}</h3>
-							{/* <CartProducts
+						<Card>
+							<div className="product" key={idx}>
+								<Card.Title>{product.title}</Card.Title>
+								{/* <CartProducts
                                     image={product.image} 
                                     /> */}
 
-							{/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
+								{/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
 
-							{/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
-							<h4>{product.price}</h4>
-							<Button onClick={() => removeFromCart(product)}>
-								{" "}
-								Remove from cart
-							</Button>
+								{/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
+								<Card.Title>kr {product.price}</Card.Title>
+								<Button
+									variant="primary"
+									onClick={() => removeFromCart(product)}
+								>
+									Remove from cart
+								</Button>
 
-							<Link to="/products">
-								<Button> back to shopping</Button>
-							</Link>
-						</div>
+								<Link to="/products">
+									<Button variant="secondary"> back to shopping</Button>
+								</Link>
+							</div>
+						</Card>
 					))}
 				</div>
-				<div>
+				<div className="payment">
 					<h3>Total price: {TotalValue}</h3>
+					<Button variant="primary">Pay now</Button>
 				</div>
 			</>
 		);

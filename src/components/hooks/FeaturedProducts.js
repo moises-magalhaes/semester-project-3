@@ -25,10 +25,12 @@ function FeaturedProducts() {
 			<div className="featuredProducts">
 				{productsDataFiltered.map((product) => (
 					<Card>
-						<Card.Img
-							variant="top"
-							src={baseUrl + product.image.formats.medium.url}
-						/>
+						<div className="box-image">
+							<Card.Img
+								variant="top"
+								src={baseUrl + product.image.formats.medium.url}
+							/>
+						</div>
 						<Card.Body>
 							<Card.Title>{product.title}</Card.Title>
 							<Card.Text>kr {product.price}</Card.Text>

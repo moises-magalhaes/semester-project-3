@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "../common/AdminLogin";
 import PostProducts from "./PostProducts";
@@ -68,12 +68,15 @@ function AdminUser() {
 			<div>
 				{user.token !== "" ? (
 					<div className="welcome">
-						<h2>
-							Welcome, <span>{user.username} </span>
-						</h2>
-						<PostProducts />
+						<h2>Welcome to Add and edit Page</h2>
 
-						<Button onClick={Logout}> Logout </Button>
+						<Card>
+							<PostProducts />
+
+							<Button variant="secondary" onClick={Logout} className="logout">
+								Logout
+							</Button>
+						</Card>
 					</div>
 				) : (
 					<AdminLogin Login={Login} error={error} />

@@ -53,21 +53,30 @@ function ProductDetailData() {
 
 	return (
 		<>
-			<div className="product">
-				<h1>{productData.title}</h1>
-				<Card>
-					<Card.Img variant="top" src={baseUrl + imageData.url} />
-					<Card.Body>
-						<Card.Title>{productData.title}</Card.Title>
-						<Card.Text>kr {productData.price}</Card.Text>
-						<Button onClick={() => addToCart(productData)}> Add to cart</Button>
-						<Link to="/cart">
-							<Button variant="secondary">Go to cart</Button>
-						</Link>
-					</Card.Body>
-				</Card>
+			<h1>{productData.title}</h1>
+			<div className="product-detail">
+				<div className="product">
+					<Card>
+						<div className="box-image">
+							<Card.Img variant="top" src={baseUrl + imageData.url} />
+						</div>
+						<Card.Body>
+							<Card.Title>{productData.title}</Card.Title>
+							<Card.Text>kr {productData.price}</Card.Text>
+							<Button onClick={() => addToCart(productData)}>
+								{" "}
+								Add to cart
+							</Button>
+							<Link to="/cart">
+								<Button variant="secondary">Go to cart</Button>
+							</Link>
+						</Card.Body>
+					</Card>
+				</div>
+				<div className="text-description">
+					<p>{productData.description}</p>
+				</div>
 			</div>
-
 			{/* <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length}) </Button></Link> */}
 		</>
 	);

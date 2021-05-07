@@ -14,7 +14,8 @@ import Cart from "../pages/Cart";
 import Admin from "../pages/Admin";
 import Login from "../pages/Login";
 import Edit from "../pages/Edit";
-import { NavDropdown } from "react-bootstrap";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function NavigationBar() {
 	return (
@@ -25,7 +26,13 @@ function NavigationBar() {
 						<Navbar.Brand href="/">
 							<img src="../images/logo-semester-3.svg" alt="logo" />
 						</Navbar.Brand>
+						<div className="empty-object"></div>
 						<Navbar.Toggle aria-controls="basic-navbar-nav" />
+						<div className="cart-icon">
+							<NavLink exact to="/cart">
+								<FontAwesomeIcon icon={faShoppingCart} />
+							</NavLink>
+						</div>
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="mr-auto">
 								<NavLink exact to="/">
@@ -33,6 +40,9 @@ function NavigationBar() {
 								</NavLink>
 								<NavLink exact to="/products">
 									Products
+								</NavLink>
+								<NavLink exact to="/cart">
+									Cart
 								</NavLink>
 								<NavLink exact to="/login">
 									Login

@@ -6,24 +6,32 @@
 			width: 7em;
 		}
 	}
+
+	.empty-object {
+		width: 30%;
+	}
+
 	.navbar-toggler {
 		border: none;
-		padding-right: 0;
 	}
+
 	.navbar-collapse {
 		text-align: center;
 	}
 
+	a {
+		color: $black;
+		&.active {
+			color: $blue;
+		}
+		&:hover {
+			text-decoration-thickness: 0.5em;
+		}
+	}
+
 	.navbar-nav {
 		a {
-			color: $black;
 			padding: 20px;
-			&.active {
-				color: $blue;
-			}
-			&:hover {
-				text-decoration-thickness: 0.5em;
-			}
 		}
 	}
 }

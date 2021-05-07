@@ -1,0 +1,10 @@
+.card {
+	box-shadow: 5px 5px 12px 1px rgba($grey, 0.2);
+	text-align: center;
+}
+
+@media (min-width: 576px) {
+	.card {
+		max-width: 15em;
+	}
+}

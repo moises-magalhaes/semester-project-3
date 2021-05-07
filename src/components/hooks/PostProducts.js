@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 
 function PostProducts() {
@@ -20,12 +20,12 @@ function PostProducts() {
 	// 	Post(details);
 	// }, []);
 
-	const [product, setProduct] = useState({
-		title: "",
-		description: "",
-		url: baseUrl + "/products/",
-		data: {},
-	});
+	// const [product, setProduct] = useState({
+	// 	title: "",
+	// 	description: "",
+	// 	url: baseUrl + "/products/",
+	// 	data: {},
+	// });
 
 	// if (product.status === 200) {
 	// 	alert("successfully created new Product");
@@ -69,10 +69,10 @@ function PostProducts() {
 					console.log(error, "wrong credentials");
 					setError(error, "Wrong credentials");
 				} else {
-					localStorage.setItem("setProduct", JSON.stringify({}));
-					console.log("setProduct");
+					localStorage.setItem("setDetails", JSON.stringify({}));
+					console.log("setDetails");
 
-					setProduct({
+					setDetails({
 						title: details.title,
 						description: details.description,
 						price: details.price,
@@ -87,7 +87,7 @@ function PostProducts() {
 
 	return (
 		<>
-			<Form onSubmit={submitHandler}>
+			<Form className="add-page" onSubmit={submitHandler}>
 				<Form.Group controlId="title">
 					<Form.Label>Name of Product</Form.Label>
 					<Form.Control
@@ -99,14 +99,23 @@ function PostProducts() {
 				</Form.Group>
 
 				<Form.Group>
-					<Form.File
+					<label htmlFor="basic-url">Add Image URL</label>
+					<InputGroup className="mb-3">
+						<FormControl
+							id="basic-url"
+							label="Add Image here"
+							placeholder="add image url here"
+						/>
+					</InputGroup>
+
+					{/* <Form.File
 						id="addImage"
 						label="Add Image here"
 						type="image"
 						placeholder="Enter title"
 						onChange={(e) => setDetails({ ...details, image: e.target.value })}
 						value={details.image}
-					/>
+					/> */}
 				</Form.Group>
 				<Form.Group controlId="textArea">
 					<Form.Label>Description</Form.Label>
