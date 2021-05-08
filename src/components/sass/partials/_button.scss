@@ -21,3 +21,10 @@
 	margin-top: 20px;
 	margin-left: 0;
 }
+
+@media (min-width: 576px) {
+	.btn-secondary {
+		margin-left: 0;
+		margin-top: 10px;
+	}
+}

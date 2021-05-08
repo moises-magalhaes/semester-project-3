@@ -7,6 +7,13 @@
 	.payment {
 		text-align: center;
 	}
+	@media (min-width: 576px) {
+		.products {
+			flex-wrap: wrap;
+			justify-content: space-around;
+			.card {
+				margin-left: 0;
+			}
+		}
+	}
 }
-
-

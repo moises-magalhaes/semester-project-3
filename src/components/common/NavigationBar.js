@@ -16,6 +16,7 @@ import Login from "../pages/Login";
 import Edit from "../pages/Edit";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Col, Container } from "react-bootstrap";
 
 function NavigationBar() {
 	return (
@@ -23,37 +24,47 @@ function NavigationBar() {
 			<Router key="navbar">
 				<div>
 					<Navbar bg="light" expand="lg">
-						<Navbar.Brand href="/">
-							<img src="../images/logo-semester-3.svg" alt="logo" />
-						</Navbar.Brand>
-						<div className="empty-object"></div>
-						<Navbar.Toggle aria-controls="basic-navbar-nav" />
-						<div className="cart-icon">
-							<NavLink exact to="/cart">
-								<FontAwesomeIcon icon={faShoppingCart} />
-							</NavLink>
-						</div>
-						<Navbar.Collapse id="basic-navbar-nav">
-							<Nav className="mr-auto">
-								<NavLink exact to="/">
-									Home
-								</NavLink>
-								<NavLink exact to="/products">
-									Products
-								</NavLink>
-								<NavLink exact to="/cart">
-									Cart
-								</NavLink>
-								<NavLink exact to="/login">
-									Login
-								</NavLink>
-								<NavLink exact to="/admin">
-									Admin
-								</NavLink>
-							</Nav>
-						</Navbar.Collapse>
-					</Navbar>
+						<Container>
+							<Col className="columns navbar-column-1" xs={6} sm={9} md={6}>
+								<Navbar.Brand href="/">
+									<img src="../images/logo-semester-3.svg" alt="logo" />
+								</Navbar.Brand>
+							</Col>
 
+							<Col
+								className="columns navbar-column-2"
+								xs={2}
+								md={{ order: "last" }}
+							>
+								<span className="cart-icon">
+									<NavLink exact to="/cart">
+										<FontAwesomeIcon icon={faShoppingCart} />
+									</NavLink>
+								</span>
+							</Col>
+							<Col className="columns navbar-column-3" xs={{ order: "last" }}>
+								<Navbar.Toggle aria-controls="basic-navbar-nav" />
+							</Col>
+							<Col className="columns navbar-column-4" xs={{ order: "second" }}>
+								<Navbar.Collapse id="basic-navbar-nav">
+									<Nav className="mr-auto">
+										<NavLink exact to="/">
+											Home
+										</NavLink>
+										<NavLink exact to="/products">
+											Products
+										</NavLink>
+										<NavLink exact to="/login">
+											Login
+										</NavLink>
+										<NavLink exact to="/admin">
+											Admin
+										</NavLink>
+									</Nav>
+								</Navbar.Collapse>
+							</Col>
+						</Container>
+					</Navbar>
 					{/*
                 A <Switch> looks through all its children <Route>
                 elements and renders the first one whose path
