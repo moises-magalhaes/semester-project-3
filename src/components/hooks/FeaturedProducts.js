@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { baseUrl } from "../settings/Api";
 import AllProducts from "../common/AllProducts";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function FeaturedProducts() {
 	const [productsData, setData] = useState([]);
@@ -34,7 +35,9 @@ function FeaturedProducts() {
 						<Card.Body>
 							<Card.Title>{product.title}</Card.Title>
 							<Card.Text>kr {product.price}</Card.Text>
-							<Button variant="primary">Go to product</Button>
+							<Link to={`/products/${product.id}`} key={product.price}>
+								<Button variant="primary">Go to product</Button>
+							</Link>
 						</Card.Body>
 					</Card>
 				))}

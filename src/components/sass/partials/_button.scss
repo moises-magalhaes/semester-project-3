@@ -28,3 +28,10 @@
 		margin-top: 10px;
 	}
 }
+
+@media (min-width: 768px) {
+	.btn-secondary {
+		margin-top: 0px;
+		margin-left: 10px;
+	}
+}

@@ -64,7 +64,6 @@ function ProductDetailData() {
 							<Card.Title>{productData.title}</Card.Title>
 							<Card.Text>kr {productData.price}</Card.Text>
 							<Button onClick={() => addToCart(productData)}>
-								{" "}
 								Add to cart
 							</Button>
 							<Link to="/cart">

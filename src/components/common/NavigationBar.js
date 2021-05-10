@@ -17,6 +17,7 @@ import Edit from "../pages/Edit";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Col, Container } from "react-bootstrap";
+import AboutUs from "../pages/AboutUs";
 
 function NavigationBar() {
 	return (
@@ -54,11 +55,11 @@ function NavigationBar() {
 										<NavLink exact to="/products">
 											Products
 										</NavLink>
+										<NavLink exact to="/about-us">
+											About
+										</NavLink>
 										<NavLink exact to="/login">
 											Login
-										</NavLink>
-										<NavLink exact to="/admin">
-											Admin
 										</NavLink>
 									</Nav>
 								</Navbar.Collapse>
@@ -87,6 +88,9 @@ function NavigationBar() {
 						</Route>
 						<Route path="/Login">
 							<Login />
+						</Route>
+						<Route path="/About-us">
+							<AboutUs />
 						</Route>
 						<Route path="/Admin">
 							<Admin />

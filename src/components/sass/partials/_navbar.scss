@@ -51,11 +51,31 @@
 	}
 }
 
-@media (min-width: 768px) {
+@media (max-width: 991px) and (min-width: 768px) {
 	.navbar {
 		.container {
 			.navbar-column-2 {
 				grid-column: 5/6 !important;
+			}
+
+			.navbar-toggler {
+				display: none;
+			}
+
+			.navbar-collapse {
+				display: flex !important;
+				flex-basis: auto;
+				align-items: center;
+
+				.navbar-nav {
+					flex-direction: column;
+				}
+			}
+			.navbar-collapse {
+				flex-direction: row;
+				.navbar-nav {
+					flex-direction: row !important;
+				}
 			}
 		}
 	}
