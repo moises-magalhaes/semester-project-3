@@ -47,34 +47,19 @@
 		.carousel-inner {
 			position: relative;
 			height: 100%;
-			background-color: $black;
 			padding: 60px;
+			background-color: rgba($color-primary, 0.2);
 
 			.carousel-item {
-				padding-top: 90px;
-				.user-box {
-					margin-left: -50px;
-					.user {
-						// position: fixed;
-						padding: 40px 50px;
-						margin-top: 50px;
-						margin-right: 60%;
-						margin-left: 50%;
-						// margin-bottom: 5em;
-						border-radius: 50%;
-						background: url("../../../../images/person-1.jpg");
-						background-repeat: no-repeat;
-						background-size: 170px;
-						background-position: center;
-					}
-				}
+				padding-top: 20px;
+
 				.carousel-caption {
 					position: relative;
 					left: 0;
 					padding-top: 100px;
 					h3,
 					p {
-						color: $light;
+						color: $black;
 					}
 				}
 			}

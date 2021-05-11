@@ -1,5 +1,5 @@
 import React from 'react';
- import { baseUrl } from "../settings/Api";
+ import { baseUrl } from "../../settings/Api";
 
 
 const CartProducts = (props) => {

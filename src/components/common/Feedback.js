@@ -1,4 +1,4 @@
-import { Carousel, Col, Container, Image } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import React from "react";
 
 function Feedback() {
@@ -6,10 +6,6 @@ function Feedback() {
 		<>
 			<Carousel>
 				<Carousel.Item interval={3000}>
-					<div className="userbox">
-						<span className="user"></span>
-					</div>
-
 					<Carousel.Caption>
 						<h3>Great store</h3>
 						<p>
