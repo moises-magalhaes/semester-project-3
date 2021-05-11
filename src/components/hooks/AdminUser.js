@@ -12,11 +12,9 @@ function AdminUser() {
 		token: "",
 	});
 
-	const [error, setError] = useState("");
+	const [error, setError] = useState(null);
 
 	const Login = (details) => {
-		console.log(details);
-
 		fetch(baseUrl + "/auth/local", {
 			method: "POST",
 			headers: {
@@ -30,8 +28,7 @@ function AdminUser() {
 		}).then((response) => {
 			response.json().then((result) => {
 				if (result.message) {
-					console.log("wrong credentials");
-					setError("Wrong credentials");
+					setError(result.message[0].messages[0].message);
 				} else {
 					localStorage.setItem(
 						"login",
@@ -40,8 +37,6 @@ function AdminUser() {
 							token: result.jwt,
 						})
 					);
-
-					console.log("Signed in");
 					setUser({
 						identifier: details.email,
 						login: true,
@@ -66,6 +61,11 @@ function AdminUser() {
 	return (
 		<>
 			<div>
+				{error && (
+					<div className="error">
+						<p>{error}</p>
+					</div>
+				)}
 				{user.token !== "" ? (
 					<div className="welcome">
 						<h2>Welcome to Add and edit Page</h2>

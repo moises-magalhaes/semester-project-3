@@ -7,13 +7,22 @@ function PostProducts() {
 		title: "",
 		description: "",
 		price: "",
+		featured: "",
 		image: [],
-		formats: "",
 	});
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
+	};
+
+	const handleSubmitImage = (e) => {
+		e.preventDefault();
+		console.log("addImage.handleSubmitImage e.target.files", e.target.files);
+	};
+
+	const handleChange = (e) => {
+		console.log("addImage.handleSubmitImage e.target.files");
 	};
 
 	// useEffect(() => {
@@ -66,7 +75,6 @@ function PostProducts() {
 		}).then((response) => {
 			response.json().then((result) => {
 				if (result.message) {
-					console.log(error, "wrong credentials");
 					setError(error, "Wrong credentials");
 				} else {
 					localStorage.setItem("setDetails", JSON.stringify({}));
@@ -87,6 +95,7 @@ function PostProducts() {
 
 	return (
 		<>
+			{error && <div className="error">{error}</div>}
 			<Form className="add-page" onSubmit={submitHandler}>
 				<Form.Group controlId="title">
 					<Form.Label>Name of Product</Form.Label>
@@ -100,12 +109,16 @@ function PostProducts() {
 
 				<Form.Group>
 					<label htmlFor="basic-url">Add Image URL</label>
-					<InputGroup className="mb-3">
+					<InputGroup className="addImage">
 						<FormControl
+							onSubmit={handleSubmitImage}
 							id="basic-url"
 							label="Add Image here"
+							onChange={handleChange}
 							placeholder="add image url here"
+							type="file"
 						/>
+						<Button onClick={handleChange}>Submit Image</Button>
 					</InputGroup>
 
 					{/* <Form.File
@@ -137,6 +150,21 @@ function PostProducts() {
 						onChange={(e) => setDetails({ ...details, price: e.target.value })}
 						value={details.price}
 					/>
+				</Form.Group>
+
+				<Form.Group controlId="featured">
+					{["radio"].map((type) => (
+						<div key={`default-${type}`} className="feature">
+							<Form.Check
+								type={type}
+								id={`default-${type}`}
+								label="feature Product"
+								onChange={(e) =>
+									setDetails({ ...details, featured: e.target.value })
+								}
+							/>
+						</div>
+					))}
 				</Form.Group>
 
 				<Button

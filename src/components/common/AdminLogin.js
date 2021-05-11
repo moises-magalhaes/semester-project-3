@@ -12,6 +12,7 @@ function AdminLogin({ Login, error }) {
 
 	return (
 		<>
+			<h1>Login</h1>
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="formBasicEmail">
 					<Form.Label>Email address</Form.Label>
@@ -21,7 +22,6 @@ function AdminLogin({ Login, error }) {
 						onChange={(e) => setDetails({ ...details, email: e.target.value })}
 						value={details.email}
 					/>
-					<Form.Text className="text-muted">Check your email</Form.Text>
 				</Form.Group>
 
 				<Form.Group controlId="formBasicPassword">

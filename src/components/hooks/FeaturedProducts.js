@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function FeaturedProducts() {
 	const [productsData, setData] = useState([]);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		loadData();
@@ -13,8 +14,18 @@ function FeaturedProducts() {
 
 	const loadData = async () => {
 		await fetch(baseUrl + "/products/")
-			.then((response) => response.json())
-			.then((json) => setData(json));
+			.then((response) => {
+				if (!response.ok) {
+					throw Error(
+						"An error has occurred in our database, please return later"
+					);
+				}
+				return response.json();
+			})
+			.then((json) => setData(json))
+			.catch((err) => {
+				setError(err.message);
+			});
 	};
 
 	const productsDataFiltered = productsData.filter(
@@ -24,15 +35,16 @@ function FeaturedProducts() {
 	return (
 		<>
 			<div className="featuredProducts">
+				{error && <div className="error">{error}</div>}
 				{productsDataFiltered.map((product) => (
 					<Card>
-						<div className="box-image">
+						<div className="box-image" key={product.id}>
 							<Card.Img
 								variant="top"
 								src={baseUrl + product.image.formats.medium.url}
 							/>
 						</div>
-						<Card.Body>
+						<Card.Body key={product.id + 1}>
 							<Card.Title>{product.title}</Card.Title>
 							<Card.Text>kr {product.price}</Card.Text>
 							<Link to={`/products/${product.id}`} key={product.price}>

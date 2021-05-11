@@ -3,7 +3,7 @@ import FeaturedProducts from "../hooks/FeaturedProducts";
 import Hero from "../common/Hero";
 import Feedback from "../common/Feedback";
 import HomeJumbotron from "../common/HomeJumbotron";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -26,7 +26,7 @@ function Home() {
 			<Container>
 				<div className="introduction">
 					<h1>Welcome to SuperBoutique Website</h1>
-					<h2>The best sport products in town</h2>
+					<h2>The best sport products in Bergen</h2>
 				</div>
 				<HomeJumbotron />
 				<FeaturedProducts />
