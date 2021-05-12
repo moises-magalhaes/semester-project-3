@@ -24,20 +24,20 @@ function PostProducts() {
 		setFile({ file: e.target.files[0] });
 	};
 
-	const handleSubmitImage = (e) => {
-		e.preventDefault();
-		console.log(
-			"PostProducts.handleSubmitImage e.target.files",
-			e.target.files
-		);
+	//  when the product was sent 2 times by 2 buttons unsuccessfully
+	// const handleSubmitImage = (e) => {
+	// 	e.preventDefault();
+	// 	console.log(
+	// 		"PostProducts.handleSubmitImage e.target.files",
+	// 		e.target.files
+	// 	);
+	// 	const data = new FormData();
+	// 	data.append("files", file);
+	// 	PostImage(file);
+	// };
 
-		const data = new FormData();
-		data.append("files", file);
-		PostImage(file);
-	};
-
-	const PostImage = (file) => {
-		console.log(file);
+	const PostImage = (detail) => {
+		console.log(detail);
 
 		fetch(baseUrl + "/upload", {
 			method: "POST",
@@ -46,7 +46,7 @@ function PostProducts() {
 				Authorization: `Bearer ${getToken.token}`,
 			},
 			body: JSON.stringify({
-				image: file.image,
+				image: file,
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -57,18 +57,55 @@ function PostProducts() {
 					console.log("setDetails");
 
 					setDetails({
-						image: file.image,
+						image: details.image,
 					});
 				}
 			});
 		});
 	};
+
+	// const PostImage = (file) => {
+	// 	console.log(file);
+
+	// 	fetch(baseUrl + "/upload", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-type": "application/json",
+	// 			Authorization: `Bearer ${getToken.token}`,
+	// 		},
+	// 		body: JSON.stringify({
+	// 			image: file.image,
+	// 		}),
+	// 	}).then((response) => {
+	// 		response.json().then((result) => {
+	// 			if (result.message) {
+	// 				setError(error, "Wrong credentials");
+	// 			} else {
+	// 				localStorage.setItem("setDetails", JSON.stringify({}));
+	// 				console.log("setDetails");
+
+	// 				setDetails({
+	// 					image: file.image,
+	// 				});
+	// 			}
+	// 		});
+	// 	});
+	// };
 	// console.log("PostProducts.handleSubmitImage PostImage", PostImage);
 
 	// Post all products
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
+		PostImage(file);
+
+		console.log(
+			"PostProducts.handleSubmitImage e.target.files",
+			e.target.files
+		);
+
+		const data = new FormData();
+		data.append("files", file);
 	};
 
 	const [error, setError] = useState("");
@@ -100,6 +137,7 @@ function PostProducts() {
 				description: details.description,
 				price: details.price,
 				featured: toggle,
+				
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -138,14 +176,14 @@ function PostProducts() {
 					<label htmlFor="basic-url">Add Image URL</label>
 					<InputGroup className="PostProducts addImage">
 						<FormControl
-							onSubmit={handleSubmitImage}
+							// onSubmit={handleSubmitImage}
 							id="basic-url"
 							label="Add Image here"
 							onChange={handleChange}
 							placeholder="add image url here"
 							type="file"
 						/>
-						<Button onClick={handleSubmitImage}>Submit Image</Button>
+						{/* <Button onClick={handleSubmitImage}>Submit Image</Button> */}
 					</InputGroup>
 				</Form.Group>
 				<Form.Group controlId="textArea">
