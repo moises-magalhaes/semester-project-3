@@ -11,41 +11,65 @@ function PostProducts() {
 		image: [],
 	});
 
+	//featured product
 	const [toggle, setToggle] = useState(false);
 
-	// const toggler = () => {
-	// 	toggle ? setToggle(false) : setToggle(true);
-	// };
+	//Post image
+	const [file, setFile] = useState(null);
 
-	const submitHandler = (e) => {
+	const handleChange = (e) => {
 		e.preventDefault();
-		Post(details);
+		console.log("PostProducts.handleChange e.target.files", e.target.files);
+
+		setFile({ file: e.target.files[0] });
 	};
 
 	const handleSubmitImage = (e) => {
 		e.preventDefault();
-		console.log("addImage.handleSubmitImage e.target.files", e.target.files);
+		console.log(
+			"PostProducts.handleSubmitImage e.target.files",
+			e.target.files
+		);
+
+		const data = new FormData();
+		data.append("files", file);
+		PostImage(file);
 	};
 
-	const handleChange = (e) => {
-		console.log("addImage.handleSubmitImage e.target.files");
+	const PostImage = (file) => {
+		console.log(file);
+
+		fetch(baseUrl + "/upload", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json",
+				Authorization: `Bearer ${getToken.token}`,
+			},
+			body: JSON.stringify({
+				image: file.image,
+			}),
+		}).then((response) => {
+			response.json().then((result) => {
+				if (result.message) {
+					setError(error, "Wrong credentials");
+				} else {
+					localStorage.setItem("setDetails", JSON.stringify({}));
+					console.log("setDetails");
+
+					setDetails({
+						image: file.image,
+					});
+				}
+			});
+		});
 	};
+	// console.log("PostProducts.handleSubmitImage PostImage", PostImage);
 
-	// useEffect(() => {
-	// 	Post(details);
-	// }, []);
-
-	// const [product, setProduct] = useState({
-	// 	title: "",
-	// 	description: "",
-	// 	url: baseUrl + "/products/",
-	// 	data: {},
-	// });
-
-	// if (product.status === 200) {
-	// 	alert("successfully created new Product");
-	// 	window.location = window.location.href;
-	// }
+	// Post all products
+	const submitHandler = (e) => {
+		e.preventDefault();
+		Post(details);
+	};
 
 	const [error, setError] = useState("");
 
@@ -76,9 +100,6 @@ function PostProducts() {
 				description: details.description,
 				price: details.price,
 				featured: toggle,
-				// image: {
-				// 	formats: { medium: { url: details.image.formats.medium.url } },
-				// },
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -93,10 +114,6 @@ function PostProducts() {
 						description: details.description,
 						price: details.price,
 						featured: details.feature,
-
-						// image: {
-						// 	formats: { medium: { url: details.image.formats.medium.url } },
-						// },
 					});
 				}
 			});
@@ -119,7 +136,7 @@ function PostProducts() {
 
 				<Form.Group>
 					<label htmlFor="basic-url">Add Image URL</label>
-					<InputGroup className="addImage">
+					<InputGroup className="PostProducts addImage">
 						<FormControl
 							onSubmit={handleSubmitImage}
 							id="basic-url"
@@ -128,17 +145,8 @@ function PostProducts() {
 							placeholder="add image url here"
 							type="file"
 						/>
-						<Button onClick={handleChange}>Submit Image</Button>
+						<Button onClick={handleSubmitImage}>Submit Image</Button>
 					</InputGroup>
-
-					{/* <Form.File
-						id="addImage"
-						label="Add Image here"
-						type="image"
-						placeholder="Enter title"
-						onChange={(e) => setDetails({ ...details, image: e.target.value })}
-						value={details.image}
-					/> */}
 				</Form.Group>
 				<Form.Group controlId="textArea">
 					<Form.Label>Description</Form.Label>
