@@ -7,13 +7,19 @@ function PostProducts() {
 		title: "",
 		description: "",
 		price: "",
-		featured: "",
+		featured: false,
 		image: [],
 	});
 
+	const [toggle, setToggle] = useState(false);
+
+	const toggler = () => {
+		toggle ? setToggle(false) : setToggle(true);
+	};
+
 	const submitHandler = (e) => {
 		e.preventDefault();
-		Post(details);
+		Post(details, toggler);
 	};
 
 	const handleSubmitImage = (e) => {
@@ -55,7 +61,7 @@ function PostProducts() {
 		}
 	}, []);
 
-	const Post = (details) => {
+	const Post = (details, toggler) => {
 		console.log(details);
 
 		fetch(baseUrl + "/products/", {
@@ -68,6 +74,7 @@ function PostProducts() {
 				title: details.title,
 				description: details.description,
 				price: details.price,
+				featured: details.featured ? setToggle(false) : setToggle(true),
 				// image: {
 				// 	formats: { medium: { url: details.image.formats.medium.url } },
 				// },
@@ -84,6 +91,8 @@ function PostProducts() {
 						title: details.title,
 						description: details.description,
 						price: details.price,
+						featured: details.featured ? setToggle(false) : setToggle(true),
+
 						// image: {
 						// 	formats: { medium: { url: details.image.formats.medium.url } },
 						// },
@@ -153,15 +162,15 @@ function PostProducts() {
 				</Form.Group>
 
 				<Form.Group controlId="featured">
-					{["radio"].map((type) => (
+					{["switch"].map((type) => (
 						<div key={`default-${type}`} className="feature">
 							<Form.Check
 								type={type}
 								id={`default-${type}`}
 								label="feature Product"
-								onChange={(e) =>
-									setDetails({ ...details, featured: e.target.value })
-								}
+								// onClick={toggler}
+								onChange={(e) => setToggle(toggle)}
+								value={details.feature}
 							/>
 						</div>
 					))}
