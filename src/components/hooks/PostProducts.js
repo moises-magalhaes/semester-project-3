@@ -57,7 +57,7 @@ function PostProducts() {
 					console.log("setDetails");
 
 					setDetails({
-						image: details.image,
+						image: file.image,
 					});
 				}
 			});
@@ -137,7 +137,6 @@ function PostProducts() {
 				description: details.description,
 				price: details.price,
 				featured: toggle,
-				
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
