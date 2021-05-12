@@ -13,13 +13,13 @@ function PostProducts() {
 
 	const [toggle, setToggle] = useState(false);
 
-	const toggler = () => {
-		toggle ? setToggle(false) : setToggle(true);
-	};
+	// const toggler = () => {
+	// 	toggle ? setToggle(false) : setToggle(true);
+	// };
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		Post(details, toggler);
+		Post(details);
 	};
 
 	const handleSubmitImage = (e) => {
@@ -61,8 +61,9 @@ function PostProducts() {
 		}
 	}, []);
 
-	const Post = (details, toggler) => {
+	const Post = (details) => {
 		console.log(details);
+		toggle ? setToggle(true) : setToggle(false);
 
 		fetch(baseUrl + "/products/", {
 			method: "POST",
@@ -74,7 +75,7 @@ function PostProducts() {
 				title: details.title,
 				description: details.description,
 				price: details.price,
-				featured: details.featured ? setToggle(false) : setToggle(true),
+				featured: toggle,
 				// image: {
 				// 	formats: { medium: { url: details.image.formats.medium.url } },
 				// },
@@ -91,7 +92,7 @@ function PostProducts() {
 						title: details.title,
 						description: details.description,
 						price: details.price,
-						featured: details.featured ? setToggle(false) : setToggle(true),
+						featured: details.feature,
 
 						// image: {
 						// 	formats: { medium: { url: details.image.formats.medium.url } },
@@ -168,8 +169,7 @@ function PostProducts() {
 								type={type}
 								id={`default-${type}`}
 								label="feature Product"
-								// onClick={toggler}
-								onChange={(e) => setToggle(toggle)}
+								onChange={(e) => setToggle((prevState) => !prevState)}
 								value={details.feature}
 							/>
 						</div>
