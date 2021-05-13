@@ -24,20 +24,22 @@ function PostProducts() {
 		setFile({ file: e.target.files[0] });
 	};
 
-	//  when the product was sent 2 times by 2 buttons unsuccessfully
-	// const handleSubmitImage = (e) => {
-	// 	e.preventDefault();
-	// 	console.log(
-	// 		"PostProducts.handleSubmitImage e.target.files",
-	// 		e.target.files
-	// 	);
-	// 	const data = new FormData();
-	// 	data.append("files", file);
-	// 	PostImage(file);
-	// };
+	// Post all products
+	const submitHandler = (e) => {
+		e.preventDefault();
+		Post(details);
+		PostImage(file);
 
-	const PostImage = (detail) => {
-		console.log(detail);
+		console.log(
+			"PostProducts.handleSubmitImage e.target.files",
+			e.target.files
+		);
+	};
+
+	const PostImage = (file) => {
+		console.log(file);
+		const formData = new FormData();
+		formData.append("files", file);
 
 		fetch(baseUrl + "/upload", {
 			method: "POST",
@@ -48,6 +50,8 @@ function PostProducts() {
 			body: JSON.stringify({
 				image: file,
 			}),
+
+			data: formData,
 		}).then((response) => {
 			response.json().then((result) => {
 				if (result.message) {
@@ -62,50 +66,6 @@ function PostProducts() {
 				}
 			});
 		});
-	};
-
-	// const PostImage = (file) => {
-	// 	console.log(file);
-
-	// 	fetch(baseUrl + "/upload", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-type": "application/json",
-	// 			Authorization: `Bearer ${getToken.token}`,
-	// 		},
-	// 		body: JSON.stringify({
-	// 			image: file.image,
-	// 		}),
-	// 	}).then((response) => {
-	// 		response.json().then((result) => {
-	// 			if (result.message) {
-	// 				setError(error, "Wrong credentials");
-	// 			} else {
-	// 				localStorage.setItem("setDetails", JSON.stringify({}));
-	// 				console.log("setDetails");
-
-	// 				setDetails({
-	// 					image: file.image,
-	// 				});
-	// 			}
-	// 		});
-	// 	});
-	// };
-	// console.log("PostProducts.handleSubmitImage PostImage", PostImage);
-
-	// Post all products
-	const submitHandler = (e) => {
-		e.preventDefault();
-		Post(details);
-		PostImage(file);
-
-		console.log(
-			"PostProducts.handleSubmitImage e.target.files",
-			e.target.files
-		);
-
-		const data = new FormData();
-		data.append("files", file);
 	};
 
 	const [error, setError] = useState("");
