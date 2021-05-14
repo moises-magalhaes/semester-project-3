@@ -114,6 +114,7 @@ function Edit() {
 
 	return (
 		<div className="container">
+			<h1>Edit Product</h1>
 			<Form>
 				<Form.Group>
 					<Form.Label>Id of Product</Form.Label>
@@ -184,7 +185,7 @@ function Edit() {
 				</Button>
 
 				<Button
-					variant="primary"
+					variant="secondary"
 					type="submit"
 					className="submitButton"
 					onClick={handleDelete}

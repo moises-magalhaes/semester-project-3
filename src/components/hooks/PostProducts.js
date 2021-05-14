@@ -15,7 +15,7 @@ function PostProducts() {
 	const [toggle, setToggle] = useState(false);
 
 	//Post image
-	const [file, setFile] = useState(null);
+	const [file, setFile] = useState();
 
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -29,15 +29,11 @@ function PostProducts() {
 		e.preventDefault();
 		Post(details);
 		PostImage(file);
-
-		console.log(
-			"PostProducts.handleSubmitImage e.target.files",
-			e.target.files
-		);
 	};
 
 	const PostImage = (file) => {
 		console.log(file);
+
 		const formData = new FormData();
 		formData.append("files", file);
 
@@ -83,7 +79,6 @@ function PostProducts() {
 	}, []);
 
 	const Post = (details) => {
-		console.log(details);
 		toggle ? setToggle(true) : setToggle(false);
 
 		fetch(baseUrl + "/products/", {
@@ -104,13 +99,13 @@ function PostProducts() {
 					setError(error, "Wrong credentials");
 				} else {
 					localStorage.setItem("setDetails", JSON.stringify({}));
-					console.log("setDetails");
 
 					setDetails({
 						title: details.title,
 						description: details.description,
 						price: details.price,
 						featured: details.feature,
+						image: file.image,
 					});
 				}
 			});
@@ -120,7 +115,7 @@ function PostProducts() {
 	return (
 		<>
 			{error && <div className="error">{error}</div>}
-			<Form className="add-page" onSubmit={submitHandler}>
+			<Form className="add-products-form" onSubmit={submitHandler}>
 				<Form.Group controlId="title">
 					<Form.Label>Name of Product</Form.Label>
 					<Form.Control
@@ -138,8 +133,9 @@ function PostProducts() {
 							id="basic-url"
 							label="Add Image here"
 							onChange={handleChange}
-							placeholder="add image url here"
+							placeholder="add image here"
 							type="file"
+							name={details.title}
 						/>
 					</InputGroup>
 				</Form.Group>

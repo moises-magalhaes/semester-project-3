@@ -19,7 +19,8 @@
 
 .logout {
 	margin-top: 20px;
-	margin-left: 0;
+	margin-left: 0 !important;
+	width: 100%;
 }
 
 @media (min-width: 576px) {

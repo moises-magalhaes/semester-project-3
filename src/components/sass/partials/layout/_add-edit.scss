@@ -1,4 +1,47 @@
-.add-page {
+.add-products {
 	padding: 20px;
 	background-color: rgba($grey, 0.2);
+	grid-template: "add";
+	.submitButton {
+		margin-bottom: 10px;
+	}
+}
+
+@media (min-width: 576px) {
+	.edit-page {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		h1 {
+			grid-column: 1/4 !important;
+			grid-row: 1/1;
+		}
+
+		.add-products {
+			.card {
+				max-width: 45em !important;
+			}
+		}
+
+		// h3 {
+		// 	grid-column: 1/4;
+		// 	grid-row: 2/2;
+		// }
+	}
+
+	.products-to-edit {
+		// grid-template: "edit";
+
+		.edit-container {
+			.products {
+				flex-wrap: wrap;
+				.card {
+					margin-left: 0;
+					margin-right: 10px;
+					.box-image {
+						margin: 10px;
+					}
+				}
+			}
+		}
+	}
 }

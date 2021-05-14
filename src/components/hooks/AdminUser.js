@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "../common/AdminLogin";
 import PostProducts from "./PostProducts";
+import AdminProducts from "../common/AdminProducts";
 
 function AdminUser() {
 	const [user, setUser] = useState({
@@ -67,16 +68,21 @@ function AdminUser() {
 					</div>
 				)}
 				{user.token !== "" ? (
-					<div className="welcome">
-						<h2>Welcome to Add and edit Page</h2>
+					<div className="edit-page">
+						<h1>Welcome to Add and edit Page</h1>
 
-						<Card>
+						<Card className="add-products">
+							<h2>Add Products here</h2>
 							<PostProducts />
 
 							<Button variant="secondary" onClick={Logout} className="logout">
 								Logout
 							</Button>
 						</Card>
+
+						<div className="products-to-edit">
+							<AdminProducts />
+						</div>
 					</div>
 				) : (
 					<AdminLogin Login={Login} error={error} />
