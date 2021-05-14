@@ -13,7 +13,6 @@ function ProductDetailData() {
 	useEffect(() => {
 		loadData();
 	}, []);
-	// const [error, setError] = useState("");
 
 	const loadData = async () => {
 		await fetch(baseUrl + `/products/${id}`)
@@ -76,7 +75,6 @@ function ProductDetailData() {
 					<p>{productData.description}</p>
 				</div>
 			</div>
-			{/* <Link to="/cart" cart={Cart}><Button>Go to cart ({cart.length}) </Button></Link> */}
 		</>
 	);
 }

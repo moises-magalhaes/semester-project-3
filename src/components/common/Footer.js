@@ -23,7 +23,6 @@ function Footer() {
 										<Link to="/products">Products</Link>
 										<Link to="/cart">Cart</Link>
 										<Link to="/login">Login</Link>
-										<Link to="/admin">Admin</Link>
 									</ul>
 								</div>
 								{/* colum 2 */}

@@ -11,11 +11,10 @@ function Edit() {
 		image: [],
 	});
 
-	const [DeleteProduct, setDeleteProduct] = useState({});
+	//featured product
+	const [toggle, setToggle] = useState(false);
 
-	// const confirmDelete = window.confirm(
-	// 	"Are you sure you want to delete this item?"
-	// );
+	const [DeleteProduct, setDeleteProduct] = useState({});
 
 	const { id } = useParams();
 
@@ -53,6 +52,7 @@ function Edit() {
 
 	const EditProduct = (details) => {
 		console.log(details);
+		toggle ? setToggle(true) : setToggle(false);
 
 		fetch(baseUrl + `/products/${id}`, {
 			method: "PUT",
@@ -64,8 +64,8 @@ function Edit() {
 				title: details.title,
 				description: details.description,
 				price: details.price,
-				// image: { formats: { medium: details.image.formats.medium } },
 				id: details.id,
+				feature: toggle,
 			}),
 		}).then((response) => {
 			response.json().then((result) => {
@@ -80,8 +80,8 @@ function Edit() {
 						title: details.title,
 						description: details.description,
 						price: details.price,
-						// image: { formats: { medium: details.image.formats.medium } },
 						id: details.id,
+						feature: details.feature,
 					});
 				}
 			});
@@ -117,7 +117,7 @@ function Edit() {
 			<Form>
 				<Form.Group>
 					<Form.Label>Id of Product</Form.Label>
-					<Form.Control id="ProductId" />
+					<Form.Control id="ProductId" placeholder={details.id} />
 				</Form.Group>
 
 				<Form.Group>
@@ -126,6 +126,7 @@ function Edit() {
 						id="title"
 						onChange={(e) => setDetails({ ...details, title: e.target.value })}
 						value={details.title}
+						placeholder={details.title}
 					/>
 				</Form.Group>
 
@@ -144,6 +145,7 @@ function Edit() {
 							setDetails({ ...details, description: e.target.value })
 						}
 						value={details.description}
+						placeholder={details.description}
 					/>
 				</Form.Group>
 
@@ -153,7 +155,23 @@ function Edit() {
 						id="price"
 						onChange={(e) => setDetails({ ...details, price: e.target.value })}
 						value={details.price}
+						placeholder={details.price}
 					/>
+				</Form.Group>
+
+				<Form.Group controlId="featured">
+					{["switch"].map((type) => (
+						<div key={`default-${type}`} className="feature">
+							<Form.Check
+								type={type}
+								id={`default-${type}`}
+								label="feature Product"
+								onChange={(e) => setToggle((prevState) => !prevState)}
+								value={details.feature}
+								placeholder={details.feature}
+							/>
+						</div>
+					))}
 				</Form.Group>
 
 				<Button

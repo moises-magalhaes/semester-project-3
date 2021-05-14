@@ -30,9 +30,6 @@ function Hero() {
 
 	const newUrl = baseUrl + heroData;
 
-	// console.log(heroData);
-	// console.log(newUrl)
-
 	return (
 		<>
 			<Jumbotron>

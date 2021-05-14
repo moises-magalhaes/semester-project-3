@@ -61,7 +61,7 @@ function PostProducts() {
 					console.log("setDetails");
 
 					setDetails({
-						image: file.image,
+						image: details.image,
 					});
 				}
 			});
@@ -135,14 +135,12 @@ function PostProducts() {
 					<label htmlFor="basic-url">Add Image URL</label>
 					<InputGroup className="PostProducts addImage">
 						<FormControl
-							// onSubmit={handleSubmitImage}
 							id="basic-url"
 							label="Add Image here"
 							onChange={handleChange}
 							placeholder="add image url here"
 							type="file"
 						/>
-						{/* <Button onClick={handleSubmitImage}>Submit Image</Button> */}
 					</InputGroup>
 				</Form.Group>
 				<Form.Group controlId="textArea">

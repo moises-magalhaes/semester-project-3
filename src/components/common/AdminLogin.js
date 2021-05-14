@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-// import AdminUser from "./AdminUser";
 
 function AdminLogin({ Login, error }) {
 	const [details, setDetails] = useState({ name: "", email: "", password: "" });

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
-// import AllProducts from "./utils/AllProducts";
 
 function ProductsPageData() {
 	const [productsData, setData] = useState([]);

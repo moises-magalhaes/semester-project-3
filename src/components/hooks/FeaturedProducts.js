@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { baseUrl } from "../settings/Api";
-// import AllProducts from "../common/utils/AllProducts";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

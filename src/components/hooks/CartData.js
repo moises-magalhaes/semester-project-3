@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import { baseUrl } from '../settings/Api';
-// import CartProducts from './CartProducts';
 import EmptyCart from "../common/EmptyCart";
 
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("shoes") || "[]");
@@ -16,22 +14,6 @@ function CartData() {
 			setCart(JSON.parse(data));
 		}
 	}, []);
-
-	// const flatArray = image.flat((entry)=> {
-	//     if(Array.isArray(entry)) {
-	//         return entry;
-	//     }
-
-	//      });
-
-	//      console.log(flatArray)
-
-	// let {
-	//     array:{image: {formats: {thumbnail: {url}}}}
-	// } = image;
-
-	// console.log(url)
-	// console.log(image);
 
 	const removeFromCart = (productToRemove) => {
 		setCart(cart.filter((product) => product !== productToRemove));
@@ -61,13 +43,7 @@ function CartData() {
 						<Card>
 							<div className="product" key={idx}>
 								<Card.Title>{product.title}</Card.Title>
-								{/* <CartProducts
-                                    image={product.image} 
-                                    /> */}
-
-								{/* <img src= {baseUrl + product["image"].formats.thumbnail.url} alt ={product.title}/> */}
-
-								{/* <img src= {baseUrl + product.image.formats.thumbnail.url} alt ={product.title}/> */}
+							
 								<Card.Title>kr {product.price}</Card.Title>
 								<Button
 									variant="primary"
