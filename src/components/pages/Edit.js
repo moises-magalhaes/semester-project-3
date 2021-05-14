@@ -133,8 +133,8 @@ function Edit() {
 				<Form.Group>
 					<Form.File
 						id="image"
-						// onChange={(e) => setDetails({ ...details, image: e.target.value })}
-						// value={details.image}
+						onChange={(e) => setDetails({ ...details, image: e.target.value })}
+						value={details.image}
 					/>
 				</Form.Group>
 				<Form.Group>

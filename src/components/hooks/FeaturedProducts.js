@@ -43,7 +43,7 @@ function FeaturedProducts() {
 								src={baseUrl + product.image.formats.medium.url}
 							/>
 						</div>
-						<Card.Body key={product.id + 1}>
+						<Card.Body key={product.price}>
 							<Card.Title>{product.title}</Card.Title>
 							<Card.Text>kr {product.price}</Card.Text>
 							<Link to={`/products/${product.id}`} key={product.price}>
