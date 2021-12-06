@@ -36,7 +36,6 @@ function AdminLogin({ Login, error }) {
 				</Form.Group>
 
 				<Button
-					onClick={submitHandler}
 					className="submitButton"
 					variant="primary"
 					type="submit"
