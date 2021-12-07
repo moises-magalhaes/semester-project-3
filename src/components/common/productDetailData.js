@@ -62,6 +62,9 @@ function ProductDetailData() {
 						<Card.Body>
 							<Card.Title>{productData.title}</Card.Title>
 							<Card.Text>kr {productData.price}</Card.Text>
+							<div className="text-description">
+								<p>{productData.description}</p>
+							</div>
 							<Button onClick={() => addToCart(productData)}>
 								Add to cart
 							</Button>
@@ -70,9 +73,6 @@ function ProductDetailData() {
 							</Link>
 						</Card.Body>
 					</Card>
-				</div>
-				<div className="text-description">
-					<p>{productData.description}</p>
 				</div>
 			</div>
 		</>

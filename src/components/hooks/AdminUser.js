@@ -69,17 +69,14 @@ function AdminUser() {
 				)}
 				{user.token !== "" ? (
 					<div className="edit-page">
+						<Button variant="secondary" onClick={Logout} className="logout">
+							Logout
+						</Button>
 						<h1>Welcome to Add and edit Page</h1>
-
 						<Card className="add-products">
 							<h2>Add Products here</h2>
 							<PostProducts />
-
-							<Button variant="secondary" onClick={Logout} className="logout">
-								Logout
-							</Button>
 						</Card>
-
 						<div className="products-to-edit">
 							<AdminProducts />
 						</div>

@@ -31,15 +31,14 @@
 		}
 	}
 	.product-detail {
+		display: flex;
+		justify-content: space-between;
 		.card {
 			max-width: 600px !important;
 		}
-
-		display: flex;
-		justify-content: space-between;
-		.text-description {
-			width: 400px;
-			padding-left: 20px;
+		.btn-secondary {
+			margin-top: 0;
+			margin-left: 10px;
 		}
 	}
 }
@@ -47,5 +46,8 @@
 @media (min-width: 768px) {
 	.products {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+	.product-detail {
+		justify-content: center;
 	}
 }
