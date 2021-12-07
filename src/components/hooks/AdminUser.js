@@ -49,15 +49,6 @@ function AdminUser() {
 		});
 	};
 
-	// const Logout = () => {
-	// 	localStorage.removeItem("login");
-	// 	setUser({
-	// 		identifier: "",
-	// 		login: false,
-	// 		token: "",
-	// 	});
-	// };
-
 	return (
 		<>
 			<div className="wrapper">

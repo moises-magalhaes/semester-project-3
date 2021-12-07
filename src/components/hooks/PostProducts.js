@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
+import axios from "axios";
 
 function PostProducts() {
 	const [details, setDetails] = useState({
@@ -15,27 +16,48 @@ function PostProducts() {
 	const [toggle, setToggle] = useState(false);
 
 	//Post image
-	const [file, setFile] = useState();
+	const [files, setFiles] = useState();
 
-	const handleChange = (e) => {
+	const handleImage = (e) => {
 		e.preventDefault();
-		console.log("PostProducts.handleChange e.target.files", e.target.files);
+		setFiles({ files: e.target.files });
 
-		setFile({ file: e.target.files[0] });
+		const formData = new FormData();
+
+		formData.append("files", files[0]);
+
+		axios
+			.post("http://localhosy:1337/upload")
+			.then((response) => {
+				const imageId = response.data[0].id;
+				axios
+					.post("http://localhost:1337/people", { image: imageId })
+					.then((response) => {
+						console.log("correct: ", response);
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+					});
+			})
+			.catch((error) => {
+				console.error("Error adding document: ", error);
+			});
+
+		console.log("PostProducts.handleImage e.target.files", e.target.files);
 	};
 
 	// Post all products
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
-		PostImage(file);
+		PostImage(files);
 	};
 
-	const PostImage = (file) => {
-		console.log(file);
+	const PostImage = (files) => {
+		console.log(files);
 
 		const formData = new FormData();
-		formData.append("files", file);
+		formData.append("files", files);
 
 		fetch(baseUrl + "/upload", {
 			method: "POST",
@@ -44,7 +66,7 @@ function PostProducts() {
 				Authorization: `Bearer ${getToken.token}`,
 			},
 			body: JSON.stringify({
-				image: file,
+				image: files,
 			}),
 
 			data: formData,
@@ -105,7 +127,7 @@ function PostProducts() {
 						description: details.description,
 						price: details.price,
 						featured: details.feature,
-						image: file.image,
+						image: files.image,
 					});
 				}
 			});
@@ -132,9 +154,9 @@ function PostProducts() {
 						<FormControl
 							id="basic-url"
 							label="Add Image here"
-							onChange={handleChange}
+							onChange={handleImage}
 							placeholder="add image here"
-							type="file"
+							type="files"
 							name={details.title}
 						/>
 					</InputGroup>

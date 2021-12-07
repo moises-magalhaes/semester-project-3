@@ -23,8 +23,8 @@ function AdminProducts() {
 
 				<div className="products">
 					{productsData.map((product) => (
-						<Card>
-							<div className="product" key={product.id}>
+						<Card key={product.id}>
+							<div className="product">
 								<div className="box-image">
 									<Card.Title> id: {product.id}</Card.Title>
 									<Card.Title>{product.title}</Card.Title>
