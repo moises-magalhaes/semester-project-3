@@ -15,16 +15,25 @@
 			.navbar-toggler {
 				border: none;
 			}
-
+			&.navbar-column-1 {
+				padding-left: 0;
+			}
 			&.navbar-column-2 {
 				grid-column: 3/4;
+				margin-left: auto;
+				width: 20px;
 			}
 			&.navbar-column-3 {
 				grid-column: 5/6;
+				// margin-left: auto;
+
 				padding-right: 0;
 				padding-left: 0;
 				.navbar-toggler {
 					padding-right: 0;
+					&.collapsed {
+						margin-left: 20px;
+					}
 				}
 			}
 			&.navbar-column-4 {
@@ -42,7 +51,7 @@
 			&.active,
 			&:hover {
 				color: rgba($black, 0.5);
-				text-decoration-thickness: 0.5em;
+				text-decoration-thickness: 0.2em;
 			}
 		}
 
@@ -54,12 +63,14 @@
 	}
 }
 
-@media (max-width: 991px) and (min-width: 768px) {
+@media (min-width: 768px) {
 	.navbar {
 		.container {
 			.columns {
 				&.navbar-column-2 {
 					grid-column: 5/6 !important;
+					padding-left: 0;
+					padding-right: 37px;
 				}
 
 				.navbar-toggler {
@@ -79,6 +90,17 @@
 							flex-direction: row;
 						}
 					}
+				}
+			}
+		}
+	}
+}
+@media (min-width: 992px) {
+	.navbar {
+		.container {
+			.columns {
+				&.navbar-column-2 {
+					padding-right: 0;
 				}
 			}
 		}

@@ -13,13 +13,14 @@
 
 @media (min-width: 576px) {
 	.products {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 14px;
 
 		.card {
-			margin-left: 25px;
-			&:first-child {
-				margin-left: 0;
-			}
+			min-width: 163px;
+			margin-left: auto;
+			min-width: 100%;
 			.box-image {
 				height: 165px;
 				overflow: hidden;
@@ -40,5 +41,11 @@
 			width: 400px;
 			padding-left: 20px;
 		}
+	}
+}
+
+@media (min-width: 768px) {
+	.products {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 }
