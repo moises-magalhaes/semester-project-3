@@ -3,9 +3,6 @@ import ReactDOM from "react-dom";
 import "./components/sass/style.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// import axios from "axios";
-
-// axios.defaults.baseURL = "http://localhost:1337";
 
 ReactDOM.render(
 	<React.StrictMode>

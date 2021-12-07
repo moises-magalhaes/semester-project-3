@@ -1,23 +1,23 @@
-import { Button } from "bootstrap";
-import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import PostProducts from "../hooks/PostProducts";
-import AdminUser from "../hooks/AdminUser";
+import AdminLogout from "../common/AdminLogout";
+import AdminProducts from "../common/AdminProducts";
 
 function Admin({ Logout }) {
 	return (
-		<div className="container">
-			<h1>Admin</h1>
-			<div className="welcome">
-				<h2>Welcome to Add and edit Page</h2>
-
-				<Card>
-					<PostProducts />
-
-					<Button variant="secondary" onClick={Logout} className="logout">
-						Logout
-					</Button>
-				</Card>
+		<div className="edit-page">
+			<div className="container">
+				<AdminLogout />
+				<h1>Admin</h1>
+				<div className="welcome">
+					<h2>Welcome to Add and edit Page</h2>
+					<Card className="add-products">
+						<PostProducts />
+					</Card>
+					<div className="products-to-edit">
+						<AdminProducts />
+					</div>
+				</div>
 			</div>
 		</div>
 	);

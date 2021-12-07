@@ -18,6 +18,7 @@ function ProductsPageData() {
 			.then((json) => setData(json));
 	};
 
+	console.log(productsData);
 	// search box
 
 	useEffect(() => {
@@ -50,10 +51,10 @@ function ProductsPageData() {
 					<Card>
 						<div className="product" key={product.id}>
 							<div className="box-image">
-								{/* <Card.Img
+								<Card.Img
 									variant="top"
 									src={baseUrl + product.image.formats.medium.url}
-								/> */}
+								/>
 							</div>
 							<Card.Body key={product.id + 1}>
 								<Card.Title>{product.title}</Card.Title>

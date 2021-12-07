@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
 import AdminLogin from "../common/AdminLogin";
-import PostProducts from "./PostProducts";
-import AdminProducts from "../common/AdminProducts";
+import { useHistory } from "react-router";
 
 function AdminUser() {
 	const [user, setUser] = useState({
@@ -14,6 +13,7 @@ function AdminUser() {
 	});
 
 	const [error, setError] = useState(null);
+	const history = useHistory();
 
 	const Login = (details) => {
 		fetch(baseUrl + "/auth/local", {
@@ -45,45 +45,33 @@ function AdminUser() {
 					});
 				}
 			});
+			history.push("/admin");
 		});
 	};
 
-	console.log(user.token);
-
-	const Logout = () => {
-		localStorage.removeItem("login");
-		setUser({
-			identifier: "",
-			login: false,
-			token: "",
-		});
-	};
+	// const Logout = () => {
+	// 	localStorage.removeItem("login");
+	// 	setUser({
+	// 		identifier: "",
+	// 		login: false,
+	// 		token: "",
+	// 	});
+	// };
 
 	return (
 		<>
-			<div>
-				{error && (
-					<div className="error">
-						<p>{error}</p>
-					</div>
-				)}
-				{user.token !== "" ? (
-					<div className="edit-page">
-						<Button variant="secondary" onClick={Logout} className="logout">
-							Logout
-						</Button>
-						<h1>Welcome to Add and edit Page</h1>
-						<Card className="add-products">
-							<h2>Add Products here</h2>
-							<PostProducts />
-						</Card>
-						<div className="products-to-edit">
-							<AdminProducts />
+			<div className="wrapper">
+				<Container className="admin-page">
+					{error && (
+						<div className="error">
+							<p>{error}</p>
 						</div>
+					)}
+
+					<div onSubmit={Login}>
+						<AdminLogin Login={Login} error={error} />
 					</div>
-				) : (
-					<AdminLogin Login={Login} error={error} />
-				)}
+				</Container>
 			</div>
 		</>
 	);

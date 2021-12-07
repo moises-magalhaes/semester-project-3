@@ -11,33 +11,35 @@ function ProductDetailData() {
 	const { id } = useParams();
 
 	useEffect(() => {
+		const loadData = async () => {
+			await fetch(baseUrl + `/products/${id}`)
+				.then((response) => response.json())
+				.then((json) => setData(json));
+		};
 		loadData();
-	}, []);
-
-	const loadData = async () => {
-		await fetch(baseUrl + `/products/${id}`)
-			.then((response) => response.json())
-			.then((json) => setData(json));
-	};
+	}, [id]);
 
 	const addToCart = (productData) => {
 		setCart([...cart, productData]);
 	};
 	useEffect(() => {
-		loadImage();
-	}, []);
-
-	const loadImage = async () => {
-		await fetch(baseUrl + `/products/${id}`).then((response) => {
-			response.json().then((result) => {
-				if (result.image.formats === "" || result.image.formats === undefined) {
-					return (result.image.formats = "no image added");
-				} else {
-					setImage(result.image.formats.medium);
-				}
+		const loadImage = async () => {
+			await fetch(baseUrl + `/products/${id}`).then((response) => {
+				response.json().then((result) => {
+					if (
+						result.image.formats === "" ||
+						result.image.formats === undefined
+					) {
+						return (result.image.formats = "no image added");
+					} else {
+						setImage(result.image.formats.medium);
+					}
+				});
 			});
-		});
-	};
+		};
+
+		loadImage();
+	}, [id]);
 
 	useEffect(() => {
 		const data = localStorage.getItem("shoes");
