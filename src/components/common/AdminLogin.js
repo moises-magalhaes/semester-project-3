@@ -35,11 +35,7 @@ function AdminLogin({ Login, error }) {
 					/>
 				</Form.Group>
 
-				<Button
-					className="submitButton"
-					variant="primary"
-					type="submit"
-				>
+				<Button className="submitButton" variant="primary" type="submit">
 					Login
 				</Button>
 			</Form>

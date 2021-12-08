@@ -11,7 +11,6 @@ function AdminUser() {
 		login: false,
 		token: "",
 	});
-
 	const [error, setError] = useState(null);
 	const history = useHistory();
 
@@ -29,7 +28,7 @@ function AdminUser() {
 		}).then((response) => {
 			response.json().then((result) => {
 				if (result.message) {
-					setError(result.message[0].messages[0].message);
+					setError(result.message[0].message);
 				} else {
 					localStorage.setItem(
 						"login",
@@ -39,6 +38,7 @@ function AdminUser() {
 						})
 					);
 					setUser({
+						...user,
 						identifier: details.email,
 						login: true,
 						token: result.jwt,
