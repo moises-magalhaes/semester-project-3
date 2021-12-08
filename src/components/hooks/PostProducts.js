@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
-import axios from "axios";
 
 function PostProducts() {
 	const [details, setDetails] = useState({
@@ -11,85 +10,17 @@ function PostProducts() {
 		featured: false,
 		image: [],
 	});
-
 	//featured product
 	const [toggle, setToggle] = useState(false);
-
-	//Post image
-	const [files, setFiles] = useState([]);
-
-	// const handleImage = (e) => {
-	// 	e.preventDefault();
-	// 	const formData = new FormData();
-
-	// 	axios
-	// 		.post("http://localhost:1337/upload")
-	// 		.then((response) => {
-	// 			const imageId = response.data[0].id;
-
-	// 			axios
-	// 				.post("http://localhost:1337/products", { image: imageId })
-	// 				.then((response) => {
-	// 					console.log("correct: ", response);
-	// 				})
-	// 				.catch((error) => {
-	// 					console.error("Error adding document: ", error);
-	// 				});
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("Error adding document: ", error);
-	// 		});
-	// 	// setFiles({ files: e.target.files });
-	// 	formData.append("files", files[0]);
-
-	// 	console.log("PostProducts.handleImage e.target.files", e.target.files);
-	// };
+	const [error, setError] = useState("");
 
 	// Post all products
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
-		// PostImage(files);
 	};
-
-	// const PostImage = (files) => {
-	// 	console.log(files);
-
-	// 	const formData = new FormData();
-	// 	formData.append("files", files);
-
-	// 	fetch(baseUrl + "/upload", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-type": "application/json",
-	// 			Authorization: `Bearer ${getToken.token}`,
-	// 		},
-	// 		body: JSON.stringify({
-	// 			image: files,
-	// 			formData,
-	// 		}),
-	// 		// data: formData,
-	// 	}).then((response) => {
-	// 		response.json().then((result) => {
-	// 			if (result.message) {
-	// 				setError(error, "Wrong credentials");
-	// 			} else {
-	// 				localStorage.setItem("setDetails", JSON.stringify({}));
-	// 				console.log("setDetails");
-
-	// 				setDetails({
-	// 					image: details.image,
-	// 				});
-	// 			}
-	// 		});
-	// 	});
-	// };
-
-	const [error, setError] = useState("");
-
 	//fetch from LocalStorage
 	const keyFromLocalStorage = JSON.parse(localStorage.getItem("login") || "[]");
-
 	const [getToken, setGetToken] = useState([keyFromLocalStorage]);
 
 	useEffect(() => {
@@ -102,7 +33,7 @@ function PostProducts() {
 	const Post = (details) => {
 		toggle ? setToggle(true) : setToggle(false);
 
-		//adding both image and post
+		//adding both image and info at once
 		const url = baseUrl + "/products";
 		const formData = new FormData();
 		const image = details.image;
@@ -139,41 +70,10 @@ function PostProducts() {
 						description: details.description,
 						price: details.price,
 						featured: details.feature,
-						image: files.image,
 					});
 				}
 			});
 		});
-
-		// fetch(baseUrl + "/products/", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-type": "application/json",
-		// 		Authorization: `Bearer ${getToken.token}`,
-		// 	},
-		// 	body: JSON.stringify({
-		// 		title: details.title,
-		// 		description: details.description,
-		// 		price: details.price,
-		// 		featured: toggle,
-		// 	}),
-		// }).then((response) => {
-		// 	response.json().then((result) => {
-		// 		if (result.message) {
-		// 			setError(error, "Wrong credentials");
-		// 		} else {
-		// 			localStorage.setItem("setDetails", JSON.stringify({}));
-
-		// 			setDetails({
-		// 				title: details.title,
-		// 				description: details.description,
-		// 				price: details.price,
-		// 				featured: details.feature,
-		// 				image: files.image,
-		// 			});
-		// 		}
-		// 	});
-		// });
 	};
 
 	return (
@@ -190,9 +90,6 @@ function PostProducts() {
 					/>
 				</Form.Group>
 
-				{/* <Form.Group>
-					<label htmlFor="basic-url">Add Image URL</label>
-					<InputGroup className="PostProducts addImage"> */}
 				<Form.Group controlId="formFile" className="mb-3">
 					<Form.Label>add file here</Form.Label>
 					<Form.Control
@@ -205,18 +102,7 @@ function PostProducts() {
 						name={details.image}
 					/>
 				</Form.Group>
-				{/* <FormControl
-							id="basic-url"
-							label="Add Image here"
-							onChange={(e) =>
-								setDetails({ ...details, image: e.target.value })
-							}
-							placeholder="add image here"
-						
-							name={details.image}
-						/> */}
-				{/* </InputGroup>
-				</Form.Group> */}
+
 				<Form.Group controlId="textArea">
 					<Form.Label>Description</Form.Label>
 					<Form.Control

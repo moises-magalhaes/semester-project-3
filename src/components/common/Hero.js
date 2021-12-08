@@ -15,11 +15,6 @@ function Hero() {
 	const loadData = async () => {
 		await fetch(baseUrl + "/home/")
 			.then((response) => {
-				if (!response.ok) {
-					throw Error(
-						"An error has occurred in our database, please return later"
-					);
-				}
 				return response.json();
 			})
 			.then((json) => setData(json.hero_banner.url))

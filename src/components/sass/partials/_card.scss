@@ -1,6 +1,10 @@
 .card {
 	box-shadow: 5px 5px 12px 1px rgba($grey, 0.2);
 	text-align: center;
+	.box-image {
+		height: 200px;
+		overflow: hidden;
+	}
 }
 
 @media (min-width: 576px) {

@@ -66,3 +66,19 @@
 		}
 	}
 }
+@media (min-width: 576px) {
+	.featuredProducts {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+@media (min-width: 768px) {
+	.featuredProducts {
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-content: space-between;
+		column-gap: 20px;
+		.card {
+			max-width: 100%;
+		}
+	}
+}

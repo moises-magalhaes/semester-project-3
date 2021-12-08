@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
+import { useHistory } from "react-router";
 
 function Edit() {
 	const [details, setDetails] = useState({
@@ -13,13 +14,15 @@ function Edit() {
 
 	//featured product
 	const [toggle, setToggle] = useState(false);
+	const [error, setError] = useState("");
 
-	const [DeleteProduct, setDeleteProduct] = useState({});
+	// const [DeleteProduct, setDeleteProduct] = useState({});
+	const history = useHistory();
 
 	const { id } = useParams();
 
 	if (!id) {
-		document.location.href = "/";
+		document.location.href = "/admin";
 	}
 
 	const submitHandler = (e) => {
@@ -32,10 +35,9 @@ function Edit() {
 
 		if (window.confirm("Are you sure you wish to delete this item?")) {
 			deleteProduct();
+			history.push("/admin");
 		}
 	};
-
-	const [error, setError] = useState("");
 
 	//fetch from LocalStorage
 	const keyFromLocalStorage = JSON.parse(localStorage.getItem("login") || "[]");
@@ -46,9 +48,9 @@ function Edit() {
 		const value = localStorage.getItem("login");
 		if (value) {
 			setGetToken(JSON.parse(value));
-			console.log(getToken.token);
+			// console.log(getToken.token);
 		}
-	}, []);
+	}, [getToken.token]);
 
 	const EditProduct = (details) => {
 		console.log(details);
