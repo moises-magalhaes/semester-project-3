@@ -180,7 +180,9 @@ function PostProducts() {
 					<Form.Label>add file here</Form.Label>
 					<Form.Control
 						label="Add Image here"
-						onChange={(e) => setDetails({ ...details, image: e.files.image })}
+						onChange={(e) =>
+							setDetails({ ...details, image: e.target.files[0] })
+						}
 						placeholder="add image here"
 						type="file"
 						name={details.image}
