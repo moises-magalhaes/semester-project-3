@@ -127,7 +127,24 @@ function PostProducts() {
 			},
 		};
 
-		fetch(url, options).then((res) => res.json().then(console.log));
+		fetch(url, options).then((response) => {
+			response.json().then((result) => {
+				if (result.message) {
+					setError(error, "Wrong credentials");
+				} else {
+					localStorage.setItem("setDetails", JSON.stringify({}));
+
+					setDetails({
+						title: details.title,
+						description: details.description,
+						price: details.price,
+						featured: details.feature,
+						image: files.image,
+					});
+				}
+			});
+		});
+
 		// fetch(baseUrl + "/products/", {
 		// 	method: "POST",
 		// 	headers: {
