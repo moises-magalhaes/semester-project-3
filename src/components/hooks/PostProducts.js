@@ -16,35 +16,34 @@ function PostProducts() {
 	const [toggle, setToggle] = useState(false);
 
 	//Post image
-	const [files, setFiles] = useState();
+	const [files, setFiles] = useState({ image: [] });
 
-	const handleImage = (e) => {
-		e.preventDefault();
-		setFiles({ files: e.target.files });
+	// const handleImage = (e) => {
+	// 	e.preventDefault();
+	// 	const formData = new FormData();
 
-		const formData = new FormData();
+	// 	axios
+	// 		.post("http://localhost:1337/upload")
+	// 		.then((response) => {
+	// 			const imageId = response.data[0].id;
 
-		formData.append("files", files[0]);
+	// 			axios
+	// 				.post("http://localhost:1337/products", { image: imageId })
+	// 				.then((response) => {
+	// 					console.log("correct: ", response);
+	// 				})
+	// 				.catch((error) => {
+	// 					console.error("Error adding document: ", error);
+	// 				});
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("Error adding document: ", error);
+	// 		});
+	// 	// setFiles({ files: e.target.files });
+	// 	formData.append("files", files[0]);
 
-		axios
-			.post("http://localhosy:1337/upload")
-			.then((response) => {
-				const imageId = response.data[0].id;
-				axios
-					.post("http://localhost:1337/people", { image: imageId })
-					.then((response) => {
-						console.log("correct: ", response);
-					})
-					.catch((error) => {
-						console.error("Error adding document: ", error);
-					});
-			})
-			.catch((error) => {
-				console.error("Error adding document: ", error);
-			});
-
-		console.log("PostProducts.handleImage e.target.files", e.target.files);
-	};
+	// 	console.log("PostProducts.handleImage e.target.files", e.target.files);
+	// };
 
 	// Post all products
 	const submitHandler = (e) => {
@@ -154,7 +153,7 @@ function PostProducts() {
 						<FormControl
 							id="basic-url"
 							label="Add Image here"
-							onChange={handleImage}
+							onChange={(e) => setFiles({ ...files, image: e.target.value })}
 							placeholder="add image here"
 							type="files"
 							name={details.title}
