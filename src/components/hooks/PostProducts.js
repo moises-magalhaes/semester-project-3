@@ -16,7 +16,7 @@ function PostProducts() {
 	const [toggle, setToggle] = useState(false);
 
 	//Post image
-	const [files, setFiles] = useState({ image: [] });
+	const [files, setFiles] = useState([]);
 
 	// const handleImage = (e) => {
 	// 	e.preventDefault();
@@ -49,41 +49,41 @@ function PostProducts() {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		Post(details);
-		PostImage(files);
+		// PostImage(files);
 	};
 
-	const PostImage = (files) => {
-		console.log(files);
+	// const PostImage = (files) => {
+	// 	console.log(files);
 
-		const formData = new FormData();
-		formData.append("files", files);
+	// 	const formData = new FormData();
+	// 	formData.append("files", files);
 
-		fetch(baseUrl + "/upload", {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json",
-				Authorization: `Bearer ${getToken.token}`,
-			},
-			body: JSON.stringify({
-				image: files,
-			}),
+	// 	fetch(baseUrl + "/upload", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"Content-type": "application/json",
+	// 			Authorization: `Bearer ${getToken.token}`,
+	// 		},
+	// 		body: JSON.stringify({
+	// 			image: files,
+	// 			formData,
+	// 		}),
+	// 		// data: formData,
+	// 	}).then((response) => {
+	// 		response.json().then((result) => {
+	// 			if (result.message) {
+	// 				setError(error, "Wrong credentials");
+	// 			} else {
+	// 				localStorage.setItem("setDetails", JSON.stringify({}));
+	// 				console.log("setDetails");
 
-			data: formData,
-		}).then((response) => {
-			response.json().then((result) => {
-				if (result.message) {
-					setError(error, "Wrong credentials");
-				} else {
-					localStorage.setItem("setDetails", JSON.stringify({}));
-					console.log("setDetails");
-
-					setDetails({
-						image: details.image,
-					});
-				}
-			});
-		});
-	};
+	// 				setDetails({
+	// 					image: details.image,
+	// 				});
+	// 			}
+	// 		});
+	// 	});
+	// };
 
 	const [error, setError] = useState("");
 
@@ -102,35 +102,61 @@ function PostProducts() {
 	const Post = (details) => {
 		toggle ? setToggle(true) : setToggle(false);
 
-		fetch(baseUrl + "/products/", {
+		//adding both image and post
+		const url = baseUrl + "/products";
+		const formData = new FormData();
+		const image = details.image;
+
+		const data = JSON.stringify({
+			title: details.title,
+			description: details.description,
+			price: details.price,
+			featured: toggle,
+		});
+
+		//single image
+		formData.append("files.image", image);
+		formData.append("data", data);
+
+		const options = {
 			method: "POST",
+			body: formData,
 			headers: {
-				"Content-type": "application/json",
+				//no content-type, to inherit the header automatically
 				Authorization: `Bearer ${getToken.token}`,
 			},
-			body: JSON.stringify({
-				title: details.title,
-				description: details.description,
-				price: details.price,
-				featured: toggle,
-			}),
-		}).then((response) => {
-			response.json().then((result) => {
-				if (result.message) {
-					setError(error, "Wrong credentials");
-				} else {
-					localStorage.setItem("setDetails", JSON.stringify({}));
+		};
 
-					setDetails({
-						title: details.title,
-						description: details.description,
-						price: details.price,
-						featured: details.feature,
-						image: files.image,
-					});
-				}
-			});
-		});
+		fetch(url, options).then((res) => res.json().then(console.log));
+		// fetch(baseUrl + "/products/", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-type": "application/json",
+		// 		Authorization: `Bearer ${getToken.token}`,
+		// 	},
+		// 	body: JSON.stringify({
+		// 		title: details.title,
+		// 		description: details.description,
+		// 		price: details.price,
+		// 		featured: toggle,
+		// 	}),
+		// }).then((response) => {
+		// 	response.json().then((result) => {
+		// 		if (result.message) {
+		// 			setError(error, "Wrong credentials");
+		// 		} else {
+		// 			localStorage.setItem("setDetails", JSON.stringify({}));
+
+		// 			setDetails({
+		// 				title: details.title,
+		// 				description: details.description,
+		// 				price: details.price,
+		// 				featured: details.feature,
+		// 				image: files.image,
+		// 			});
+		// 		}
+		// 	});
+		// });
 	};
 
 	return (
@@ -147,19 +173,31 @@ function PostProducts() {
 					/>
 				</Form.Group>
 
-				<Form.Group>
+				{/* <Form.Group>
 					<label htmlFor="basic-url">Add Image URL</label>
-					<InputGroup className="PostProducts addImage">
-						<FormControl
+					<InputGroup className="PostProducts addImage"> */}
+				<Form.Group controlId="formFile" className="mb-3">
+					<Form.Label>add file here</Form.Label>
+					<Form.Control
+						label="Add Image here"
+						onChange={(e) => setDetails({ ...details, image: e.files.image })}
+						placeholder="add image here"
+						type="file"
+						name={details.image}
+					/>
+				</Form.Group>
+				{/* <FormControl
 							id="basic-url"
 							label="Add Image here"
-							onChange={(e) => setFiles({ ...files, image: e.target.value })}
+							onChange={(e) =>
+								setDetails({ ...details, image: e.target.value })
+							}
 							placeholder="add image here"
-							type="files"
-							name={details.title}
-						/>
-					</InputGroup>
-				</Form.Group>
+						
+							name={details.image}
+						/> */}
+				{/* </InputGroup>
+				</Form.Group> */}
 				<Form.Group controlId="textArea">
 					<Form.Label>Description</Form.Label>
 					<Form.Control
