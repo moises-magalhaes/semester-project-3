@@ -32,6 +32,7 @@ function AdminLogin({ Login, error }) {
 							setDetails({ ...details, password: e.target.value })
 						}
 						value={details.password}
+						suggested="current-password"
 					/>
 				</Form.Group>
 

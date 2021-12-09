@@ -1,6 +1,7 @@
 .navbar {
 	background-color: $color-primary !important;
 	z-index: 1;
+	flex: 1 0 auto;
 	.container {
 		display: grid;
 		grid-template-columns: 3fr 2fr 1fr 0.3fr 1fr;

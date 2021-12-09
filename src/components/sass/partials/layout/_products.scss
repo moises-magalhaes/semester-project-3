@@ -33,8 +33,12 @@
 	.product-detail {
 		display: flex;
 		justify-content: space-between;
+
 		.card {
 			max-width: 600px !important;
+			.box-image {
+				height: 500px;
+			}
 		}
 		.btn-secondary {
 			margin-top: 0;

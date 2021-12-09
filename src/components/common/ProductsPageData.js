@@ -18,9 +18,7 @@ function ProductsPageData() {
 			.then((json) => setData(json));
 	};
 
-	console.log(productsData);
 	// search box
-
 	useEffect(() => {
 		setFilteredSearch(
 			productsData.filter((product) => {
@@ -48,8 +46,8 @@ function ProductsPageData() {
 
 			<div className="products">
 				{filteredSearch.map((product) => (
-					<Card>
-						<div className="product" key={product.id}>
+					<Card key={product.id}>
+						<div className="product">
 							<div className="box-image">
 								{product.image === null || undefined ? (
 									<Card.Img variant="top" src={image1} />

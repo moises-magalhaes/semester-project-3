@@ -10,13 +10,13 @@ function Edit() {
 		description: "",
 		price: "",
 		image: [],
+		id: "",
 	});
 
 	//featured product
 	const [toggle, setToggle] = useState(false);
 	const [error, setError] = useState("");
 
-	// const [DeleteProduct, setDeleteProduct] = useState({});
 	const history = useHistory();
 
 	const { id } = useParams();
@@ -28,6 +28,7 @@ function Edit() {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		EditProduct(details);
+		alert("product edited");
 	};
 
 	const handleDelete = (e) => {
@@ -36,6 +37,7 @@ function Edit() {
 		if (window.confirm("Are you sure you wish to delete this item?")) {
 			deleteProduct();
 			history.push("/admin");
+			alert("product deleted");
 		}
 	};
 
@@ -52,8 +54,9 @@ function Edit() {
 		}
 	}, [getToken.token]);
 
+	//edit product
 	const EditProduct = (details) => {
-		console.log(details);
+		// console.log(details);
 		toggle ? setToggle(true) : setToggle(false);
 
 		fetch(baseUrl + `/products/${id}`, {
@@ -90,9 +93,8 @@ function Edit() {
 		});
 	};
 
+	//delete product
 	const deleteProduct = (details) => {
-		console.log(details);
-
 		fetch(baseUrl + `/products/${id}`, {
 			method: "DELETE",
 			headers: {
@@ -115,86 +117,103 @@ function Edit() {
 	};
 
 	return (
-		<div className="container">
-			<h1>Edit Product</h1>
-			<Form>
-				<Form.Group>
-					<Form.Label>Id of Product</Form.Label>
-					<Form.Control id="ProductId" placeholder={details.id} />
-				</Form.Group>
-
-				<Form.Group>
-					<Form.Label>Name of Product</Form.Label>
-					<Form.Control
-						id="title"
-						onChange={(e) => setDetails({ ...details, title: e.target.value })}
-						value={details.title}
-						placeholder={details.title}
-					/>
-				</Form.Group>
-
-				<Form.Group>
-					<Form.File
-						id="image"
-						onChange={(e) => setDetails({ ...details, image: e.target.value })}
-						value={details.image}
-					/>
-				</Form.Group>
-				<Form.Group>
-					<Form.Label>Description</Form.Label>
-					<Form.Control
-						id="description"
-						onChange={(e) =>
-							setDetails({ ...details, description: e.target.value })
-						}
-						value={details.description}
-						placeholder={details.description}
-					/>
-				</Form.Group>
-
-				<Form.Group>
-					<Form.Label>Price</Form.Label>
-					<Form.Control
-						id="price"
-						onChange={(e) => setDetails({ ...details, price: e.target.value })}
-						value={details.price}
-						placeholder={details.price}
-					/>
-				</Form.Group>
-
-				<Form.Group controlId="featured">
-					{["switch"].map((type) => (
-						<div key={`default-${type}`} className="feature">
-							<Form.Check
-								type={type}
-								id={`default-${type}`}
-								label="feature Product"
-								onChange={(e) => setToggle((prevState) => !prevState)}
-								value={details.feature}
-								placeholder={details.feature}
+		<div className="container edit-products-page">
+			{id === undefined ? (
+				history.push("/admin")
+			) : (
+				<>
+					<h1>Edit Product</h1>
+					<Form>
+						<Form.Group>
+							<Form.Label>Id of Product</Form.Label>
+							<Form.Control
+								id="ProductId"
+								placeholder={details.id}
+								defaultValue={details.id}
+								readOnly
 							/>
-						</div>
-					))}
-				</Form.Group>
+						</Form.Group>
 
-				<Button
-					variant="primary"
-					type="submit"
-					className="submitButton"
-					onClick={submitHandler}
-				>
-					Update
-				</Button>
+						<Form.Group>
+							<Form.Label>Name of Product</Form.Label>
+							<Form.Control
+								id="title"
+								onChange={(e) =>
+									setDetails({ ...details, title: e.target.value })
+								}
+								defaultValue={details.title}
+								placeholder={details.title}
+							/>
+						</Form.Group>
 
-				<Button
-					variant="secondary"
-					type="submit"
-					className="submitButton"
-					onClick={handleDelete}
-				>
-					Delete
-				</Button>
-			</Form>
+						<Form.Group>
+							<Form.File
+								id="image"
+								onChange={(e) =>
+									setDetails({ ...details, image: e.target.value })
+								}
+								defaultValue={details.image}
+							/>
+						</Form.Group>
+						<Form.Group>
+							<Form.Label>Description</Form.Label>
+							<Form.Control
+								id="description"
+								onChange={(e) =>
+									setDetails({ ...details, description: e.target.value })
+								}
+								placeholder={details.description}
+								defaultValue={details.description}
+							/>
+						</Form.Group>
+
+						<Form.Group>
+							<Form.Label>Price</Form.Label>
+							<Form.Control
+								id="price"
+								onChange={(e) =>
+									setDetails({ ...details, price: e.target.value })
+								}
+								placeholder={details.price}
+								defaultValue={details.price}
+							/>
+						</Form.Group>
+
+						<Form.Group controlId="featured">
+							{["switch"].map((type) => (
+								<div key={`default-${type}`} className="feature">
+									<Form.Check
+										type={type}
+										id={`default-${type}`}
+										label="feature Product"
+										onChange={(e) => setToggle((prevState) => !prevState)}
+										placeholder={details.feature}
+										defaultValue={details.feature}
+									/>
+								</div>
+							))}
+						</Form.Group>
+
+						<Button
+							variant="primary"
+							type="submit"
+							className="submitButton"
+							onClick={submitHandler}
+						>
+							Update
+						</Button>
+
+						<Button
+							variant="secondary"
+							type="submit"
+							className="submitButton"
+							onClick={handleDelete}
+						>
+							Delete
+						</Button>
+					</Form>
+				</>
+			)}
 		</div>
 	);
 }

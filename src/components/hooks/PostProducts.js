@@ -71,6 +71,8 @@ function PostProducts() {
 						price: details.price,
 						featured: details.feature,
 					});
+					alert("Product added successfully");
+					window.location.reload(true);
 				}
 			});
 		});

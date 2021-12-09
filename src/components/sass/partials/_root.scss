@@ -1,0 +1,15 @@
+html,
+body {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+
+	#root {
+		min-height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-content: space-between;
+	}
+}
