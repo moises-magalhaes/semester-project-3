@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import { baseUrl } from "../settings/Api";
+import image1 from "../../images/image-1.jpg";
 
 function ProductDetailData() {
 	const [productData, setData] = useState({});
@@ -27,10 +28,11 @@ function ProductDetailData() {
 			await fetch(baseUrl + `/products/${id}`).then((response) => {
 				response.json().then((result) => {
 					if (
-						result.image.formats === "" ||
-						result.image.formats === undefined
+						result.image === null ||
+						result.image === undefined ||
+						result.image === ""
 					) {
-						return (result.image.formats = "no image added");
+						return (result.image = "no image added");
 					} else {
 						setImage(result.image.formats.medium);
 					}
@@ -59,7 +61,11 @@ function ProductDetailData() {
 				<div className="product">
 					<Card>
 						<div className="box-image">
-							<Card.Img variant="top" src={baseUrl + imageData.url} />
+							{imageData.url === undefined || null ? (
+								<Card.Img variant="top" src={image1} />
+							) : (
+								<Card.Img variant="top" src={baseUrl + imageData.url} />
+							)}
 						</div>
 						<Card.Body>
 							<Card.Title>{productData.title}</Card.Title>

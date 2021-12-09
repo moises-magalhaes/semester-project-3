@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { baseUrl } from "../settings/Api";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import image1 from "../../images/image-1.jpg";
 
 function FeaturedProducts() {
 	const [productsData, setData] = useState([]);
@@ -36,13 +37,18 @@ function FeaturedProducts() {
 			<div className="featuredProducts">
 				{error && <div className="error">{error}</div>}
 				{productsDataFiltered.map((product) => (
-					<Card>
-						<div className="box-image" key={product.id}>
-							<Card.Img
-								variant="top"
-								src={baseUrl + product.image.formats.medium.url}
-							/>
+					<Card key={product.id}>
+						<div className="box-image">
+							{product.image === null || undefined ? (
+								<Card.Img variant="top" src={image1} />
+							) : (
+								<Card.Img
+									variant="top"
+									src={baseUrl + product.image.formats.medium.url}
+								/>
+							)}
 						</div>
+
 						<Card.Body key={product.price}>
 							<Card.Title>{product.title}</Card.Title>
 							<Card.Text>kr {product.price}</Card.Text>

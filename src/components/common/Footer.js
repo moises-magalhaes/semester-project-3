@@ -17,9 +17,7 @@ function Footer() {
 								<div className="col-md-3 col-sm-6">
 									<h4>Page Map</h4>
 									<ul className="footer-nav d-flex flex-column">
-										<Link exact to="/">
-											Home
-										</Link>
+										<Link to="/">Home</Link>
 										<Link to="/products">Products</Link>
 										<Link to="/cart">Cart</Link>
 										<Link to="/login">Login</Link>

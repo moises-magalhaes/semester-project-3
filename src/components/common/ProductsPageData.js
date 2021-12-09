@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 import { baseUrl } from "../settings/Api";
-
+import image1 from "../../images/image-1.jpg";
 function ProductsPageData() {
 	const [productsData, setData] = useState([]);
 	const [search, setSearch] = useState("");
@@ -51,10 +51,14 @@ function ProductsPageData() {
 					<Card>
 						<div className="product" key={product.id}>
 							<div className="box-image">
-								<Card.Img
-									variant="top"
-									src={baseUrl + product.image.formats.medium.url}
-								/>
+								{product.image === null || undefined ? (
+									<Card.Img variant="top" src={image1} />
+								) : (
+									<Card.Img
+										variant="top"
+										src={baseUrl + product.image.formats.medium.url}
+									/>
+								)}
 							</div>
 							<Card.Body key={product.id + 1}>
 								<Card.Title>{product.title}</Card.Title>

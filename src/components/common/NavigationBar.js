@@ -38,7 +38,7 @@ function NavigationBar() {
 								md={{ order: "last" }}
 							>
 								<span className="cart-icon">
-									<NavLink exact to="/cart">
+									<NavLink to="/cart">
 										<FontAwesomeIcon icon={faShoppingCart} />
 									</NavLink>
 								</span>
@@ -49,18 +49,10 @@ function NavigationBar() {
 							<Col className="columns navbar-column-4" xs={{ order: "second" }}>
 								<Navbar.Collapse id="basic-navbar-nav">
 									<Nav className="mr-auto">
-										<NavLink exact to="/">
-											Home
-										</NavLink>
-										<NavLink exact to="/products">
-											Products
-										</NavLink>
-										<NavLink exact to="/about-us">
-											About
-										</NavLink>
-										<NavLink exact to="/login">
-											Login
-										</NavLink>
+										<NavLink to="/">Home</NavLink>
+										<NavLink to="/products">Products</NavLink>
+										<NavLink to="/about-us">About</NavLink>
+										<NavLink to="/login">Login</NavLink>
 									</Nav>
 								</Navbar.Collapse>
 							</Col>
